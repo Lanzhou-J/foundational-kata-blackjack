@@ -23,7 +23,8 @@ namespace BlackJack
             foreach(var card in CardsInHand)
             {
                 var cardString = card.DisplayCard();
-                Console.WriteLine(cardString);
+                Console.Write(cardString);
+                Console.Write(" ");
             }
         }
     }
