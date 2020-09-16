@@ -39,10 +39,10 @@ namespace BlackJack
         public Rank Rank { get; private set; }
         public Suit Suit { get; private set; }
 
-        public String DisplayCard()
+        public string DisplayCard()
         {
-            String card = Rank.ToString() + Suit.ToString();
-            return card;
+            var newString = ($"[{Rank.ToString()}, {Suit.ToString()}]");
+            return newString;
         }
 
     }
