@@ -1,4 +1,3 @@
-using System;
 using System.Text.RegularExpressions;
 using BlackJack;
 using Xunit;
@@ -15,6 +14,14 @@ namespace BlackJackTests
             Card newCard = new Card(CardFace.Ace, Suit.Diamond);
             bool isMatch = Regex.IsMatch(newCard.FormatCardString(), cardStringPattern);
             Assert.True(isMatch);
+        }
+        
+        [Fact]
+        public void FormatCardStringShould_ReturnCorrectString()
+        {
+            Card newCard = new Card(CardFace.Ace, Suit.Diamond);
+            
+            Assert.Equal("[Ace, Diamond]", newCard.FormatCardString());
         }
     }
 }
