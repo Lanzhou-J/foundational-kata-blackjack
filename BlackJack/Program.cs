@@ -9,9 +9,9 @@ namespace BlackJack
     {
         static void Main(string[] args)
         {
-            Card firstCard = new Card(Rank.Eight,Suit.Diamond);
-            Card secondCard = new Card(Rank.Seven, Suit.Heart);
-            Card thirdCard = new Card(Rank.Nine, Suit.Spade);
+            Card firstCard = new Card(CardFace.Eight,Suit.Diamond);
+            Card secondCard = new Card(CardFace.Seven, Suit.Heart);
+            Card thirdCard = new Card(CardFace.Nine, Suit.Spade);
             List<Card> newList = new List<Card>();
             newList.Add(firstCard);
             newList.Add(secondCard);
