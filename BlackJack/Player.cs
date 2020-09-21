@@ -22,7 +22,7 @@ namespace BlackJack
         {
             foreach(var card in CardsInHand)
             {
-                var cardString = card.DisplayCard();
+                var cardString = card.FormatCardString();
                 Console.Write(cardString);
                 Console.Write(" ");
             }

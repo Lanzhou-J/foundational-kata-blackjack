@@ -18,7 +18,7 @@ namespace BlackJack
         public CardFace CardFace { get; private set; }
         public Suit Suit { get; private set; }
 
-        public string DisplayCard()
+        public string FormatCardString()
         {
             var newString = ($"[{CardFace.ToString()}, {Suit.ToString()}]");
             return newString;
