@@ -2,11 +2,6 @@ using System;
 
 namespace BlackJack
 {
-
-    
-
-    
-    
     public class Card
     {
         public Card(CardFace cardFace, Suit suit)
