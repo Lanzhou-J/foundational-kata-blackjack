@@ -1,31 +1,25 @@
-using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace BlackJack
 {
-    public class Player
+    public class Player : Person
     {
-        private string Name { get; set; }
-        private bool IsDealer { get; set; }
-        public List<Card> CardsInHand;
-        
-        public Player(string name, bool isDealer, List<Card> cardsInHand)
+        public void Hit()
         {
-            Name = name;
-            IsDealer = isDealer;
-            CardsInHand = cardsInHand;
+            //Draw one Card - DrawCard();
+            // CardsinHand of player will change.
+            // Originial shuffled deck will also change.
         }
 
-        public void PrintHandCard()
+        public void Stay()
         {
-            foreach(var card in CardsInHand)
-            {
-                var cardString = card.FormatCardString();
-                Console.Write(cardString);
-                Console.Write(" ");
-            }
+            // Stop Draw card, print final result.
+            // Dealer play starts. - Call Play() in Dealer;
+        }
+
+
+        public Player(string name, List<Card> cardsInHand) : base(name, cardsInHand)
+        {
         }
     }
 }

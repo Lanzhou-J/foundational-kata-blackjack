@@ -14,7 +14,7 @@ namespace BlackJack
             {
                 foreach(Suit suitName in Enum.GetValues(typeof(Suit)))
                 {
-                    var newCard = new Card(name, suitName);
+                    var newCard = new Card(name, suitName, newList.Count);
                     newList.Add(newCard);
                 }
             }
