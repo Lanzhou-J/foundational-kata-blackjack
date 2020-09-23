@@ -24,5 +24,12 @@ namespace BlackJack
                 Console.Write(" ");
             }
         }
+
+        public void DetermineBust()
+        {
+            // over 21 -> bust
+            //if(bust){"You are at currently at Bust!"}
+            
+        }
     }
 }
