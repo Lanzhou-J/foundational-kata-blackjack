@@ -14,6 +14,9 @@ namespace BlackJackTests
             Assert.Equal(52, listOfCards.Count); 
         }
         
+        // Deck of Heart Contains some cards.
+        //List.contain()
+        
         [Fact]
         public void CreateADeckShould_ReturnListOfCardsWhichStartFromAceHeartZeroId()
         {

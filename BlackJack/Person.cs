@@ -15,6 +15,7 @@ namespace BlackJack
             CardsInHand = cardsInHand;
         }
 
+
         public void PrintHandCard()
         {
             foreach(var card in CardsInHand)
@@ -30,6 +31,11 @@ namespace BlackJack
             // over 21 -> bust
             //if(bust){"You are at currently at Bust!"}
             
+        }
+
+        public void DrawCard(Card newCard)
+        {
+            CardsInHand.Add(newCard);
         }
     }
 }

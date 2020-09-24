@@ -14,14 +14,14 @@ namespace BlackJack
             {
                 foreach(Suit suitName in Enum.GetValues(typeof(Suit)))
                 {
-                    var newCard = new Card(name, suitName, newList.Count);
+                    var newCard = new Card(name, suitName);
                     newList.Add(newCard);
                 }
             }
             return newList;
         }
 
-        public Card DrawCard(List<Card> newListOfCards)
+        public Card PopCard(List<Card> newListOfCards)
         {
             Random rnd = new Random();
             int cardInt = rnd.Next(52);
