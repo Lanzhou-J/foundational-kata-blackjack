@@ -19,7 +19,8 @@ namespace BlackJack
         {
             //ShuffledDeck -> give card to DrawCard function
             Console.Clear();
-            Player.DrawCard();
+            var newCard = ShuffledDeck.popCard();
+            Player.DrawCard(newCard);
             Player.DrawCard();
             Dealer.DrawCard();
             Dealer.DrawCard();

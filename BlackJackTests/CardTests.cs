@@ -11,7 +11,7 @@ namespace BlackJackTests
         public void FormatCardStringShould_ReturnCorrectStringPattern()
         {
             string cardStringPattern = @"^\[(\w+), (\w+)\]$";
-            Card newCard = new Card(CardFace.Ace, Suit.Diamond, 1);
+            Card newCard = new Card(CardFace.Ace, Suit.Diamond);
             bool isMatch = Regex.IsMatch(newCard.FormatCardString(), cardStringPattern);
             Assert.True(isMatch);
         }
@@ -22,7 +22,7 @@ namespace BlackJackTests
         [InlineData(CardFace.King, Suit.Spade, "[King, Spade]")]
         public void FormatCardStringShould_ReturnCorrectString(CardFace cardFace, Suit suit, string expectedResult)
         {
-            Card newCard = new Card(cardFace, suit, 1);
+            Card newCard = new Card(cardFace, suit);
             
             Assert.Equal(expectedResult, newCard.FormatCardString());
         }
