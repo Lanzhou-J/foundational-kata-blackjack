@@ -17,25 +17,32 @@ namespace BlackJack
 
         public void Start()
         {
-            //ShuffledDeck -> give card to DrawCard function
             Console.Clear();
-            var newCard = ShuffledDeck.popCard();
+            var newCard = ShuffledDeck.PopCard();
             Player.DrawCard(newCard);
-            Player.DrawCard();
-            Dealer.DrawCard();
-            Dealer.DrawCard();
+            
+            var newCardTwo = ShuffledDeck.PopCard();
+            Player.DrawCard(newCardTwo);
+            
+            var newCardThree = ShuffledDeck.PopCard();
+            Dealer.DrawCard(newCardThree);
+            
+            var newCardFour = ShuffledDeck.PopCard();
+            Dealer.DrawCard(newCardFour);
 
-            //let dealer have 2 cards
             var newPlayerInput = new PlayerInput();
             var choice = newPlayerInput.CollectInput();
 
             switch (choice)
             {
                 case 1:
-                    Player.Hit();
+                    var newHitCard = ShuffledDeck.PopCard();
+                    Player.Hit(newHitCard);
+                    Console.WriteLine("with a hand of: ");
+                    Player.PrintHandCard();
                     break;
                 case 0:
-                    Player.Stay();
+                    Dealer.Play();
                     break;
             }
         }

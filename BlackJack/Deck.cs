@@ -7,6 +7,12 @@ namespace BlackJack
 {
     public class Deck
     {
+        private List<Card> Cards { get; set; }
+
+        public Deck(List<Card> cards)
+        {
+            Cards = cards;
+        }
         public List<Card> CreateADeck()
         {
             List<Card> newList = new List<Card>();
@@ -21,12 +27,11 @@ namespace BlackJack
             return newList;
         }
 
-        public Card PopCard(List<Card> newListOfCards)
+        public Card PopCard()
         {
-            Random rnd = new Random();
-            int cardInt = rnd.Next(52);
-            var randomCard = newListOfCards[cardInt];
-            return randomCard;
+            var firstCard = Cards[0];
+            Cards.Remove(firstCard);
+            return firstCard;
         }
     }
 }
