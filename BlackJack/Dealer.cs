@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace BlackJack
@@ -5,21 +8,32 @@ namespace BlackJack
     public class Dealer: Person
     {
 
-        public void Play()
+        public bool Play(List<Card> cards)
         {
-            // Continuous hitting until 17 then print result.
-            // Then start winning logic functions of compare player and Dealer hand card sum value.
-            // Every time Play() is called, multiple cards in CardsinHand and shuffled deck will change.
-            
-            // while loop - until 17
-            
-            // while hand_value(dealer_hand)[1] < 17:
-            // new_dealer_card = deck.pop()
-            // dealer_hand.append(new_dealer_card)
-            // print 'Dealer draws %s' % new_dealer_card
+            Console.WriteLine("Dealers turn to play...\n");
+            int index = 0;
+            Console.WriteLine("The dealers first two cards are: \n");
+            PrintHandCard();
+            while (Sum() < 17)
+            {
+                DrawCard(cards[index]);
+                index++;
+                Console.WriteLine($"Dealer's sum = {Sum()}");
+                PrintHandCard();
+                if (DetermineBust())
+                {
+                    return true;
+                }
+            }
+                
+            return false;
         }
 
         public Dealer(string name, List<Card> cardsInHand) : base(name, cardsInHand)
+        {
+        }
+        
+        public Dealer(string name) : base(name)
         {
         }
     }

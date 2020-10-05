@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace BlackJack
@@ -12,15 +14,12 @@ namespace BlackJack
             Console.WriteLine($"You are currently at {Sum()}");
             return DetermineBust();
         }
-
-        public void Stay()
-        {
-            // Stop Draw card, print final result.
-            // Dealer play starts. - Call Play() in Dealer;
-        }
-
-
+        
         public Player(string name, List<Card> cardsInHand) : base(name, cardsInHand)
+        {
+        }
+        
+        public Player(string name) : base(name)
         {
         }
     }

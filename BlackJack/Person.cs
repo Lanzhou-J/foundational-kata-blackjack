@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace BlackJack
@@ -7,38 +9,39 @@ namespace BlackJack
     {
         public string Name { get; set; }
         
-        public List<Card> CardsInHand;
+        public readonly List<Card> CardsInHand;
         
         public Person(string name, List<Card> cardsInHand)
         {
             Name = name;
             CardsInHand = cardsInHand;
         }
-
+        
+        public Person(string name)
+        {
+            Name = name;
+            CardsInHand = new List<Card>();
+        }
 
         public void PrintHandCard()
         {
             foreach(var card in CardsInHand)
             {
                 var cardString = card.FormatCardString();
-                Console.Write(cardString);
-                Console.Write(" ");
+                Console.WriteLine(cardString);
             }
         }
 
         public bool DetermineBust()
         {
-            if (Sum() > 21)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
+            return Sum() > 21;
         }
         
+        public bool DetermineBlackjack()
+        {
+            return Sum() == 21;
+        }
+
         public int Sum()
         {
             var sum = 0;
