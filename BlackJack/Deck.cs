@@ -10,11 +10,6 @@ namespace BlackJack
     {
         public List<Card> Cards { get; set; }
 
-        public Deck(List<Card> cards)
-        {
-            Cards = cards;
-        }
-        
         public Deck()
         {
             Cards = CreateADeck();

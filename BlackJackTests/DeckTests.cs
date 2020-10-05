@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using BlackJack;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace BlackJackTests
 {
     public class DeckTests
     {
+
         [Fact]
         public void NewDeckShould_ReturnAListOfCardsWithCorrectNumberOfItems()
         {
@@ -19,8 +22,7 @@ namespace BlackJackTests
         {
             Deck newDeck = new Deck();
             List<Card> listOfCards = newDeck.Cards;
-            Card newCard = new Card(CardFace.Ace, Suit.Heart);
-            Assert.Contains(newCard, listOfCards); 
+            Assert.Contains(listOfCards, item => item.CardFace == CardFace.Ace && item.Suit == Suit.Heart);
         }
     }
 }
