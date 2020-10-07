@@ -2,7 +2,7 @@ namespace BlackJack
 {
     public enum CardFace
     {
-            Ace,
+            Ace = 1,
             Two,
             Three,
             Four,
