@@ -1,32 +1,39 @@
+using System;
 using System.Collections.Generic;
 using BlackJack;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace BlackJackTests
 {
     public class DeckTests
     {
+
         [Fact]
-        public void CreateADeckShould_ReturnAListOfCardsWithCorrectNumberOfItems()
+        public void NewDeckShould_ReturnAListOfCardsWithCorrectNumberOfItems()
         {
             Deck newDeck = new Deck();
-            List<Card> listOfCards = newDeck.CreateADeck();
+            List<Card> listOfCards = newDeck.Cards;
             Assert.Equal(52, listOfCards.Count); 
         }
-        
-        // Deck of Heart Contains some cards.
-        //List.contain()
-        
+
         [Fact]
-        public void CreateADeckShould_ReturnListOfCardsWhichStartFromAceHeartZeroId()
+        public void NewDeckShould_ReturnListOfCardsWhichContainsCorrectCards()
         {
             Deck newDeck = new Deck();
-            List<Card> listOfCards = newDeck.CreateADeck();
-            Card newCard = new Card(CardFace.Ace, Suit.Heart, 0);
-            // Assert.Equal(newCard.CardFace, listOfCards[0].CardFace); 
-            // Assert.Equal(newCard.Suit, listOfCards[0].Suit); 
-            // Assert.Equal(newCard.UniqueId, listOfCards[0].UniqueId); 
-            // Assert.Equal(newCard, listOfCards[0]); 
+            List<Card> listOfCards = newDeck.Cards;
+            Assert.Contains(listOfCards, item => item.CardFace == CardFace.Ace && item.Suit == Suit.Heart);
+        }
+
+        [Fact]
+        public void PopCardShould_ReturnFirstCardFromDeckOfCards()
+        {
+            Deck newDeck = new Deck();
+            List<Card> listOfCards = newDeck.Cards;
+            var expectedCard = listOfCards[0];
+            var actualCard = newDeck.PopCard();
+            Assert.Equal(expectedCard.Suit, actualCard.Suit);
+            Assert.Equal(expectedCard.CardFace, actualCard.CardFace);
         }
     }
 }

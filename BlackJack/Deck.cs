@@ -2,12 +2,20 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using static System.Linq.Enumerable;
 
 namespace BlackJack
 {
     public class Deck
     {
-        public List<Card> CreateADeck()
+        public List<Card> Cards { get; set; }
+
+        public Deck()
+        {
+            Cards = CreateADeck();
+        }
+        
+        private List<Card> CreateADeck()
         {
             List<Card> newList = new List<Card>();
             foreach(CardFace name in Enum.GetValues(typeof(CardFace)))
@@ -18,15 +26,15 @@ namespace BlackJack
                     newList.Add(newCard);
                 }
             }
-            return newList;
+            var shuffledList = newList.OrderBy(x => Guid.NewGuid()).ToList();
+            return shuffledList;
         }
 
-        public Card PopCard(List<Card> newListOfCards)
+        public Card PopCard()
         {
-            Random rnd = new Random();
-            int cardInt = rnd.Next(52);
-            var randomCard = newListOfCards[cardInt];
-            return randomCard;
+            var firstCard = Cards[0];
+            Cards.Remove(firstCard);
+            return firstCard;
         }
     }
 }

@@ -1,13 +1,17 @@
 using System;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace BlackJack
 {
     public class Game
     {
-        public Game(Player player, Dealer dealer)
+        public Game(Player player, Dealer dealer, Deck shuffledDeck)
         {
             Player = player;
             Dealer = dealer;
+            ShuffledDeck = shuffledDeck;
         }
 
         private Player Player { get; set; }
@@ -17,48 +21,84 @@ namespace BlackJack
 
         public void Start()
         {
-            //ShuffledDeck -> give card to DrawCard function
             Console.Clear();
-            var newCard = ShuffledDeck.popCard();
+            var newCard = ShuffledDeck.PopCard();
             Player.DrawCard(newCard);
-            Player.DrawCard();
-            Dealer.DrawCard();
-            Dealer.DrawCard();
 
-            //let dealer have 2 cards
+            var newCardTwo = ShuffledDeck.PopCard();
+            Player.DrawCard(newCardTwo);
+            Console.WriteLine("Your first two cards are: ");
+            Player.PrintHandCard();
+            Console.WriteLine($"You are currently at {Player.Sum()}");
+            
+            if (Player.DetermineBlackjack())
+            {
+                if (Dealer.DetermineBlackjack())
+                {
+                    Console.WriteLine("Dealer and Player have tied in Blackjack!!!");
+                    Environment.Exit(1);
+                }
+                Console.WriteLine("Player has won Blackjack!!! Yay!");
+                Environment.Exit(1);
+            }
+ 
+            var newCardThree = ShuffledDeck.PopCard();
+            Dealer.DrawCard(newCardThree);
+
+            var newCardFour = ShuffledDeck.PopCard();
+            Dealer.DrawCard(newCardFour);
+
             var newPlayerInput = new PlayerInput();
             var choice = newPlayerInput.CollectInput();
 
-            switch (choice)
+            while (choice != 0)
             {
-                case 1:
-                    Player.Hit();
-                    break;
-                case 0:
-                    Player.Stay();
-                    break;
+                var newHitCard = ShuffledDeck.PopCard();
+
+                var playerIsBusted = Player.Hit(newHitCard);
+                Console.WriteLine("with a hand of: ");
+                Player.PrintHandCard();               
+                
+                if (Player.DetermineBlackjack())
+                {
+                    Console.WriteLine("Player has won Blackjack!!! Yay!");
+                    Environment.Exit(1);
+                }
+                
+                if (playerIsBusted)
+                {
+                    Console.WriteLine("Player is busted. Dealer wins!!"); 
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    choice = newPlayerInput.CollectInput();
+                }
             }
+
+            var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
+            if (dealerIsBusted)
+            {
+                Console.WriteLine("The dealer has busted. Player is the winner!!");
+                Environment.Exit(1);
+            }
+            CheckForWinner();
         }
 
-        public void CheckForWinner()
+        private void CheckForWinner()
         {
-            // dealer_score_label, dealer_score = hand_value(dealer_hand)
-            //
-            // if player_score < 100 and dealer_score == 100:
-            // print 'You beat the dealer!'
-            // elif player_score > dealer_score:
-            // print 'You beat the dealer!'
-            // elif player_score == dealer_score:
-            // print 'You tied the dealer, nobody wins.' -- tie logic
-            // elif player_score < dealer_score:
-            // print "Dealer wins!"
-        }
-
-        public void CheckForGameEnd()
-        {
-            //if(Determinebust boolean is true) then game ends;
-            // else if a winner is selected then game ends;
-            // else if it is a tie, then game ends;
+            if (Dealer.Sum() == Player.Sum())
+            {
+                Console.WriteLine("Player and dealer have tied. Nobody wins.");
+            }
+            else if(Dealer.Sum() > Player.Sum())
+            {
+                Console.WriteLine("Dealers hand of cards is larger. Dealer has won!!");
+            }
+            else if(Dealer.Sum() < Player.Sum())
+            {
+                Console.WriteLine("Players hand of cards is larger. Player has won!!");
+            }
         }
     }
 }
