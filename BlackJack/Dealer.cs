@@ -29,7 +29,7 @@ namespace BlackJack
             return false;
         }
 
-        public Dealer(string name, List<Card> cardsInHand) : base(name, cardsInHand)
+        public Dealer(List<Card> cardsInHand) : base(cardsInHand)
         {
         }
         

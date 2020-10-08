@@ -15,7 +15,7 @@ namespace BlackJack
             return DetermineBust();
         }
         
-        public Player(string name, List<Card> cardsInHand) : base(name, cardsInHand)
+        public Player(List<Card> cardsInHand) : base(cardsInHand)
         {
         }
         

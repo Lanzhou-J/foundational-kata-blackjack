@@ -7,19 +7,15 @@ namespace BlackJack
 {
     public class Person
     {
-        public string Name { get; set; }
-
         private readonly List<Card> _cardsInHand;
         
-        public Person(string name, List<Card> cardsInHand)
+        public Person(List<Card> cardsInHand)
         {
-            Name = name;
             _cardsInHand = cardsInHand;
         }
 
         protected Person(string name)
         {
-            Name = name;
             _cardsInHand = new List<Card>();
         }
 
