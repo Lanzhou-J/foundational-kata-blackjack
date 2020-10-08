@@ -7,15 +7,6 @@ namespace BlackJackTests
 {
     public class CardTests
     {
-        [Fact]
-        public void FormatCardStringShould_ReturnCorrectStringPattern()
-        {
-            const string cardStringPattern = @"^\[(\w+), (\w+)\]$";
-            Card newCard = new Card(CardFace.Ace, Suit.Diamond);
-            bool isMatch = Regex.IsMatch(newCard.FormatCardString(), cardStringPattern);
-            Assert.True(isMatch);
-        }
-        
         [Theory]
         [InlineData(CardFace.Ace, Suit.Diamond, "[Ace, Diamond]")]
         [InlineData(CardFace.Six, Suit.Heart, "[Six, Heart]")]
