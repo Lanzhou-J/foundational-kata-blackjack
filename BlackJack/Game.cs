@@ -29,19 +29,23 @@ namespace BlackJack
             _iio.Output("Your first two cards are: ");
             Player.PrintHandCard();
             _iio.Output($"You are currently at {Player.Sum()}");
-            
+
             if (Player.DetermineBlackjack())
             {
                 _iio.Output("Player has won!! Yay!");
                 Environment.Exit(1);
             }
- 
+
             var newCardThree = ShuffledDeck.PopCard();
             Dealer.DrawCard(newCardThree);
 
             var newCardFour = ShuffledDeck.PopCard();
             Dealer.DrawCard(newCardFour);
-            
+
+        }
+
+        public void GamePlay()
+        {
             var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
 
             while (choice != "0")
