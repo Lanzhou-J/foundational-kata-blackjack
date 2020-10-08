@@ -7,7 +7,7 @@ namespace BlackJack
 {
     public class Game
     {
-        public Game(Player player, Dealer dealer, Deck shuffledDeck)
+        public Game(Player player, Dealer dealer, Deck shuffledDeck, IInputOutput iio)
         {
             Player = player;
             Dealer = dealer;

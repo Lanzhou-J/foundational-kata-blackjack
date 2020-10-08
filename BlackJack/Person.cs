@@ -8,24 +8,24 @@ namespace BlackJack
     public class Person
     {
         public string Name { get; set; }
-        
-        public readonly List<Card> CardsInHand;
+
+        private readonly List<Card> _cardsInHand;
         
         public Person(string name, List<Card> cardsInHand)
         {
             Name = name;
-            CardsInHand = cardsInHand;
+            _cardsInHand = cardsInHand;
         }
-        
-        public Person(string name)
+
+        protected Person(string name)
         {
             Name = name;
-            CardsInHand = new List<Card>();
+            _cardsInHand = new List<Card>();
         }
 
         public void PrintHandCard()
         {
-            foreach(var card in CardsInHand)
+            foreach(var card in _cardsInHand)
             {
                 var cardString = card.FormatCardString();
                 Console.WriteLine(cardString);
@@ -45,7 +45,7 @@ namespace BlackJack
         public int Sum()
         {
             var sum = 0;
-            foreach (var card in CardsInHand)
+            foreach (var card in _cardsInHand)
             {
                 if (card.CardFace == CardFace.Jack || card.CardFace == CardFace.Queen || card.CardFace == CardFace.King)
                 {
@@ -63,7 +63,7 @@ namespace BlackJack
 
         public void DrawCard(Card newCard)
         {
-            CardsInHand.Add(newCard);
+            _cardsInHand.Add(newCard);
         }
     }
 }
