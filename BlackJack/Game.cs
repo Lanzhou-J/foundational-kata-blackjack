@@ -72,25 +72,26 @@ namespace BlackJack
             }
         }
 
-        public void CheckForWinner()
+        public string CheckForWinner()
         {
-            // dealer_score_label, dealer_score = hand_value(dealer_hand)
-            //
-            // if player_score < 100 and dealer_score == 100:
-            // print 'You beat the dealer!'
-            // elif player_score > dealer_score:
-            // print 'You beat the dealer!'
-            // elif player_score == dealer_score:
-            // print 'You tied the dealer, nobody wins.' -- tie logic
-            // elif player_score < dealer_score:
-            // print "Dealer wins!"
-        }
+            var outcome = "";
+            if (Dealer.Sum() == Player.Sum())
+            {
+                outcome = ("Player and dealer have tied. Nobody wins.");
+                return outcome;
+            } 
+            if(Dealer.Sum() > Player.Sum())
+            {
+                outcome = ("Dealers hand of cards is larger. Dealer has won!!");
+                return outcome;
+            }
 
-        public void CheckForGameEnd()
-        {
-            //if(Determinebust boolean is true) then game ends;
-            // else if a winner is selected then game ends;
-            // else if it is a tie, then game ends;
+            if(Dealer.Sum() < Player.Sum())
+            {
+                outcome = ("Players hand of cards is larger. Player has won!!");
+                return outcome;
+            }
+            return outcome;
         }
     }
 }
