@@ -12,12 +12,14 @@ namespace BlackJack
             Player = player;
             Dealer = dealer;
             ShuffledDeck = shuffledDeck;
+            _iio = iio;
         }
 
         private Player Player { get; set; }
         private Dealer Dealer { get; set; }
 
         private Deck ShuffledDeck { get; set; }
+        private readonly IInputOutput _iio;
 
         public void Start()
         {
@@ -27,13 +29,13 @@ namespace BlackJack
 
             var newCardTwo = ShuffledDeck.PopCard();
             Player.DrawCard(newCardTwo);
-            Console.WriteLine("Your first two cards are: ");
+            _iio.Output("Your first two cards are: ");
             Player.PrintHandCard();
-            Console.WriteLine($"You are currently at {Player.Sum()}");
+            _iio.Output($"You are currently at {Player.Sum()}");
             
             if (Player.DetermineBlackjack())
             {
-                Console.WriteLine("Player has won!! Yay!");
+                _iio.Output("Player has won!! Yay!");
                 Environment.Exit(1);
             }
  
@@ -42,32 +44,31 @@ namespace BlackJack
 
             var newCardFour = ShuffledDeck.PopCard();
             Dealer.DrawCard(newCardFour);
+            
+            var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
 
-            var newPlayerInput = new PlayerInput();
-            var choice = newPlayerInput.CollectInput();
-
-            while (choice != 0)
+            while (choice != "0")
             {
                 var newHitCard = ShuffledDeck.PopCard();
                 Player.Hit(newHitCard);
-                Console.WriteLine("with a hand of: ");
+                _iio.Output("with a hand of: ");
                 Player.PrintHandCard();
                 var playerIsBusted = Player.Hit(newHitCard);
                 if (playerIsBusted)
                 {
-                    Console.WriteLine("Player is busted. Dealer wins!!"); 
+                    _iio.Output("Player is busted. Dealer wins!!"); 
                     Environment.Exit(1);
                 }
                 else
                 {
-                    choice = newPlayerInput.CollectInput();
+                    choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
                 }
             }
 
             var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
             if (dealerIsBusted)
             {
-                Console.WriteLine("The dealer has busted. Player is the winner!!");
+                _iio.Output("The dealer has busted. Player is the winner!!");
             }
         }
 
