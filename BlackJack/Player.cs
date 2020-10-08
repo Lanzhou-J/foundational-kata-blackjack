@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace BlackJack
@@ -19,7 +17,7 @@ namespace BlackJack
         {
         }
         
-        public Player(string name) : base(name)
+        public Player() : base()
         {
         }
     }

@@ -1,7 +1,4 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
 
 namespace BlackJack
 {
@@ -15,10 +12,10 @@ namespace BlackJack
             _iio = iio;
         }
 
-        private Player Player { get; set; }
-        private Dealer Dealer { get; set; }
+        private Player Player { get; }
+        private Dealer Dealer { get; }
 
-        private Deck ShuffledDeck { get; set; }
+        private Deck ShuffledDeck { get; }
         private readonly IInputOutput _iio;
 
         public void Start()

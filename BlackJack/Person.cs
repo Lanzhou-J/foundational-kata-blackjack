@@ -1,7 +1,6 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlackJack
 {
@@ -14,16 +13,15 @@ namespace BlackJack
             _cardsInHand = cardsInHand;
         }
 
-        protected Person(string name)
+        protected Person()
         {
             _cardsInHand = new List<Card>();
         }
 
         public void PrintHandCard()
         {
-            foreach(var card in _cardsInHand)
+            foreach (var cardString in _cardsInHand.Select(card => card.FormatCardString()))
             {
-                var cardString = card.FormatCardString();
                 Console.WriteLine(cardString);
             }
         }
@@ -45,12 +43,12 @@ namespace BlackJack
             {
                 if (card.CardFace == CardFace.Jack || card.CardFace == CardFace.Queen || card.CardFace == CardFace.King)
                 {
-                    sum = sum + 10;
+                    sum += 10;
                 }
                 else
                 {
-                    int i = Convert.ToInt32(card.CardFace);
-                    sum = sum + i;
+                    var i = Convert.ToInt32(card.CardFace);
+                    sum += i;
                 }
             }
             

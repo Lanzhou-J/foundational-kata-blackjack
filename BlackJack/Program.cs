@@ -1,24 +1,19 @@
-﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-
-namespace BlackJack
+﻿namespace BlackJack
 {
-    public class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Player newPlayer = new Player(name: "Liv");
+            var newPlayer = new Player();
             newPlayer.PrintHandCard();
 
-            Dealer newDealer = new Dealer(name: "Lan");
+            var newDealer = new Dealer();
 
-            Deck newDeck = new Deck();
+            var newDeck = new Deck();
             
-            ConsoleInputOutput console = new ConsoleInputOutput();
+            var console = new ConsoleInputOutput();
             
-            Game newGame = new Game(newPlayer, newDealer, newDeck, console);
+            var newGame = new Game(newPlayer, newDealer, newDeck, console);
             newGame.Start();
         }
     }

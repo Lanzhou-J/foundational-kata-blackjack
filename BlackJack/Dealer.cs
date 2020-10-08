@@ -31,7 +31,7 @@ namespace BlackJack
         {
         }
         
-        public Dealer(string name) : base(name)
+        public Dealer() : base()
         {
         }
     }
