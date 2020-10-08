@@ -2,6 +2,10 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9478be85_002D05a3_002D4d67_002Daef3_002D79cee9947f87/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DetermineBlackjackShould_ReturnTrue_When21" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.PersonTests.DetermineBlackjackShould_ReturnTrue_When21&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.PersonTests.DrawCard_Should_CardsInHandIncrementByOne&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.PersonTests.DrawCard_Should_IncrementCardsInHandByOne&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests.Start_Should_InitializeTwoCardsInHandForPlayerAndDealer&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests.CheckForWinner_Should_CompareDealerAndPlayerSumAndReturnCorrectString&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	

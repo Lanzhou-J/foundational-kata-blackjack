@@ -91,5 +91,18 @@ namespace BlackJackTests
             Person newPerson = new Person("bob", listOfCardsForTest);
             Assert.Equal(19,newPerson.Sum());
         }
+        
+        [Fact]
+        public void DrawCard_Should_IncrementCardsInHandByOne()
+        {
+            Card newCard = new Card(CardFace.Nine, Suit.Club);
+            Person newPerson = new Person("bobby");
+            Assert.Empty(newPerson.CardsInHand);
+            newPerson.DrawCard(newCard);
+            Assert.Single(newPerson.CardsInHand);
+            Card newCard2 = new Card(CardFace.Eight, Suit.Spade);
+            newPerson.DrawCard(newCard2);
+            Assert.Equal(2, newPerson.CardsInHand.Count);
+        }
     }
 }

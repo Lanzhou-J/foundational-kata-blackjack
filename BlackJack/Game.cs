@@ -47,7 +47,10 @@ namespace BlackJack
 
             var newCardFour = ShuffledDeck.PopCard();
             Dealer.DrawCard(newCardFour);
+        }
 
+        public void GamePlay()
+        {
             var newPlayerInput = new PlayerInput();
             var choice = newPlayerInput.CollectInput();
 
@@ -75,7 +78,7 @@ namespace BlackJack
                     choice = newPlayerInput.CollectInput();
                 }
             }
-
+            
             var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
             if (dealerIsBusted)
             {
@@ -85,20 +88,26 @@ namespace BlackJack
             CheckForWinner();
         }
 
-        private void CheckForWinner()
+        public string CheckForWinner()
         {
+            var outcome = "";
             if (Dealer.Sum() == Player.Sum())
             {
-                Console.WriteLine("Player and dealer have tied. Nobody wins.");
-            }
-            else if(Dealer.Sum() > Player.Sum())
+                outcome = ("Player and dealer have tied. Nobody wins.");
+                return outcome;
+            } 
+            if(Dealer.Sum() > Player.Sum())
             {
-                Console.WriteLine("Dealers hand of cards is larger. Dealer has won!!");
+                outcome = ("Dealers hand of cards is larger. Dealer has won!!");
+                return outcome;
             }
-            else if(Dealer.Sum() < Player.Sum())
+
+            if(Dealer.Sum() < Player.Sum())
             {
-                Console.WriteLine("Players hand of cards is larger. Player has won!!");
+                outcome = ("Players hand of cards is larger. Player has won!!");
+                return outcome;
             }
+            return outcome;
         }
     }
 }
