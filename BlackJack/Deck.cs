@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using static System.Linq.Enumerable;
 
@@ -8,24 +6,16 @@ namespace BlackJack
 {
     public class Deck
     {
-        public List<Card> Cards { get; private set; }
+        public List<Card> Cards { get; }
 
         public Deck()
         {
             Cards = CreateADeck();
         }
         
-        private List<Card> CreateADeck()
+        private static List<Card> CreateADeck()
         {
-            List<Card> newList = new List<Card>();
-            foreach(CardFace name in Enum.GetValues(typeof(CardFace)))
-            {
-                foreach(Suit suitName in Enum.GetValues(typeof(Suit)))
-                {
-                    var newCard = new Card(name, suitName);
-                    newList.Add(newCard);
-                }
-            }
+            var newList = (from CardFace name in Enum.GetValues(typeof(CardFace)) from Suit suitName in Enum.GetValues(typeof(Suit)) select new Card(name, suitName)).ToList();
             var shuffledList = newList.OrderBy(x => Guid.NewGuid()).ToList();
             return shuffledList;
         }
