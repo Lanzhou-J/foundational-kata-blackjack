@@ -13,7 +13,7 @@ namespace BlackJackTests
         [InlineData(CardFace.King, Suit.Spade, "[King, Spade]")]
         public void FormatCardStringShould_ReturnCorrectString(CardFace cardFace, Suit suit, string expectedResult)
         {
-            Card newCard = new Card(cardFace, suit);
+            var newCard = new Card(cardFace, suit);
             
             Assert.Equal(expectedResult, newCard.FormatCardString());
         }

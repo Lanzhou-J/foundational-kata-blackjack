@@ -53,24 +53,26 @@ namespace BlackJack
                 var newHitCard = ShuffledDeck.PopCard();
                 Player.Hit(newHitCard);
                 _iio.Output("with a hand of: ");
-                Player.PrintHandCard();
-                var playerIsBusted = Player.Hit(newHitCard);
-                if (playerIsBusted)
-                {
-                    _iio.Output("Player is busted. Dealer wins!!"); 
-                    Environment.Exit(1);
+                    Player.PrintHandCard();
+                    var playerIsBusted = Player.Hit(newHitCard);
+                    if (playerIsBusted)
+                    {
+                        _iio.Output("Player is busted. Dealer wins!!"); 
+                        Environment.Exit(1);
+                    }
+                    else
+                    {
+                        choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+                    }
                 }
-                else
+                
+                var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
+                if (dealerIsBusted)
                 {
-                    choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+                    _iio.Output("The dealer has busted. Player is the winner!!");
                 }
-            }
-
-            var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
-            if (dealerIsBusted)
-            {
-                _iio.Output("The dealer has busted. Player is the winner!!");
-            }
+                
+                CheckForWinner();
         }
 
         public string CheckForWinner()
