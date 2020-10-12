@@ -35,6 +35,16 @@ namespace BlackJack
         {
             return Sum() == 21;
         }
+        
+        public int DetermineAce()
+        {
+            while (Sum()<=10)
+            {
+                return 11;
+            }
+            return 1;
+        }
+        
 
         public int Sum()
         {

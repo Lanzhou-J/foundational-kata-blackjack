@@ -80,13 +80,13 @@ namespace BlackJackTests
         }
         
         [Fact]
-        public void GamePlayShould_ShouldNotEnablePlayerDrawCard_WhenPlayerInputStayResponse()
+        public void GamePlayShould_NotEnablePlayerDrawCard_WhenPlayerInputStayResponse()
         {
             
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
-            var playerResponse = new TestResponder(StayResponse);
+            var playerResponse = new TestResponder(new[]{StayResponse});
             Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse);
             newGame.Start();
             Assert.Equal(2, newPlayer.CardsInHand.Count);

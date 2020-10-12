@@ -90,5 +90,25 @@ namespace BlackJackTests
             Person newPerson = new Person(listOfCardsForTest);
             Assert.Equal(19,newPerson.Sum());
         }
+        
+        [Fact]
+        public void DetermineAceShould_Return1_WhenSumMoreThan10()
+        {
+            Card newCard = new Card(CardFace.Nine, Suit.Club);
+            Card newCard2 = new Card(CardFace.Jack, Suit.Club);
+            List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2};
+            Person newPerson = new Person(listOfCardsForTest);
+            Assert.Equal(1,newPerson.DetermineAce());
+        }
+        
+        [Fact]
+        public void AceShould_Return11_WhenSumLessThanOrEqualTo10()
+        {
+            Card newCard = new Card(CardFace.Five, Suit.Club);
+            Card newCard2 = new Card(CardFace.Four, Suit.Club);
+            List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2};
+            Person newPerson = new Person(listOfCardsForTest);
+            Assert.Equal(11,newPerson.DetermineAce());
+        }
     }
 }
