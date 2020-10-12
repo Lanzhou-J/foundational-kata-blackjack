@@ -36,13 +36,20 @@ namespace BlackJack
             return Sum() == 21;
         }
         
-        public int DetermineAce()
+        public int SumWithAce()
         {
-            while (Sum()<=10)
+            var sum = 0;
+            foreach (var card in CardsInHand)
             {
-                return 11;
+                if (card.CardFace == CardFace.Ace)
+                {
+                    if ((Sum() - 1) <= 10)
+                    {
+                        sum = Sum() - 1 + 11;
+                    }
+                }
             }
-            return 1;
+            return sum
         }
         
 

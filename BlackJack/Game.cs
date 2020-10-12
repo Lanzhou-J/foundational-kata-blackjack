@@ -23,11 +23,21 @@ namespace BlackJack
             Console.Clear();
             var newCard = ShuffledDeck.PopCard();
             Player.DrawCard(newCard);
+            
+            
 
             var newCardTwo = ShuffledDeck.PopCard();
+            if (newCardTwo.CardFace==CardFace.Ace)
+            {
+                var aceValue = Player.DetermineAce();
+                _iio.Output($"You are currently at {Player.Sum()+aceValue}");
+            }
+            
             Player.DrawCard(newCardTwo);
+            
             _iio.Output("Your first two cards are: ");
             Player.PrintHandCard();
+            
             _iio.Output($"You are currently at {Player.Sum()}");
 
             if (Player.DetermineBlackjack())

@@ -14,10 +14,7 @@ namespace BlackJackTests
                 _testResponses.Enqueue(response);
             }
         }
-        // public TestResponder(string response)
-        // {
-        //     _testResponses.Enqueue(response);
-        // }
+        
         public string Ask(string question)
         {
             return _testResponses.Dequeue();
