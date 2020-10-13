@@ -12,13 +12,13 @@ namespace BlackJackTests
             var newCard = new Card(CardFace.Ace, Suit.Club);
             var newCard2 = new Card(CardFace.Two, Suit.Club);
             var newCard3 = new Card(CardFace.Three, Suit.Club);
-            var newCard4 = new Card(CardFace.Four, Suit.Club);
+            var newCard4 = new Card(CardFace.Four, Suit.Club); //=>20 or 10? Does Dealer have a choice?
             var newCard5 = new Card(CardFace.Five, Suit.Club);
             var newCard6 = new Card(CardFace.Two, Suit.Heart);
             var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
-            var newDealer = new Dealer();
-            newDealer.Play(listOfCardsForTest);
-            Assert.Equal(6, newDealer.CardsInHand.Count);
+            var newDealer1 = new Dealer();
+            newDealer1.Play(listOfCardsForTest);
+            Assert.Equal(6, newDealer1.CardsInHand.Count);
         }
     }
 }

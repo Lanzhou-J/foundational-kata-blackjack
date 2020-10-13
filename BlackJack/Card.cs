@@ -11,7 +11,7 @@ namespace BlackJack
         public CardFace CardFace { get; }
         public Suit Suit { get; }
 
-        public string FormatCardString()
+        public override string ToString()
         {
             var newString = ($"[{CardFace.ToString()}, {Suit.ToString()}]");
             return newString;

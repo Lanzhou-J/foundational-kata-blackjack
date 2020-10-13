@@ -17,7 +17,7 @@ namespace BlackJack
         {
         }
         
-        public Player() : base()
+        public Player()
         {
         }
     }

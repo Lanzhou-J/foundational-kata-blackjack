@@ -23,16 +23,11 @@ namespace BlackJack
             Console.Clear();
             var newCard = ShuffledDeck.PopCard();
             Player.DrawCard(newCard);
-            
-            
+
+
 
             var newCardTwo = ShuffledDeck.PopCard();
-            if (newCardTwo.CardFace==CardFace.Ace)
-            {
-                var aceValue = Player.DetermineAce();
-                _iio.Output($"You are currently at {Player.Sum()+aceValue}");
-            }
-            
+
             Player.DrawCard(newCardTwo);
             
             _iio.Output("Your first two cards are: ");
@@ -43,7 +38,7 @@ namespace BlackJack
             if (Player.DetermineBlackjack())
             {
                 _iio.Output("Player has won!! Yay!");
-                Environment.Exit(1);
+                // Environment.Exit(1);
             }
 
             var newCardThree = ShuffledDeck.PopCard();
@@ -67,13 +62,16 @@ namespace BlackJack
                 if (Player.DetermineBlackjack())
                 {
                     _iio.Output("Player has won Blackjack!!! Yay!");
-                    Environment.Exit(1);
+                    // Environment.Exit(1);
+                    //TO-DO: need to set state of the game to mark the end of the game - out of the loop
+                    break;
                 }
         
                 if (playerIsBusted)
                 {
                     _iio.Output("Player is busted. Dealer wins!!"); 
-                    Environment.Exit(1);
+                    // Environment.Exit(1);
+                    break;
                 }
                 else
                 {
@@ -85,7 +83,7 @@ namespace BlackJack
             if (dealerIsBusted)
             {
                 _iio.Output("The dealer has busted. Player is the winner!!");
-                Environment.Exit(1);
+                // Environment.Exit(1);
             }
             CheckForWinner();
         }

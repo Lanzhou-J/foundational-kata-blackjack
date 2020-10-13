@@ -7,6 +7,7 @@ namespace BlackJack
     public class Person
     {
         public List<Card> CardsInHand { get; }
+        // private readonly IInputOutput _iio;
 
         public Person(List<Card> cardsInHand)
         {
@@ -20,7 +21,7 @@ namespace BlackJack
 
         public void PrintHandCard()
         {
-            foreach (var cardString in CardsInHand.Select(card => card.FormatCardString()))
+            foreach (var cardString in CardsInHand.Select(card => card.ToString()))
             {
                 Console.WriteLine(cardString);
             }
@@ -35,23 +36,6 @@ namespace BlackJack
         {
             return Sum() == 21;
         }
-        
-        public int SumWithAce()
-        {
-            var sum = 0;
-            foreach (var card in CardsInHand)
-            {
-                if (card.CardFace == CardFace.Ace)
-                {
-                    if ((Sum() - 1) <= 10)
-                    {
-                        sum = Sum() - 1 + 11;
-                    }
-                }
-            }
-            return sum
-        }
-        
 
         public int Sum()
         {
@@ -68,7 +52,12 @@ namespace BlackJack
                     sum += i;
                 }
             }
-            
+
+            if (sum <= 11 && CardsInHand.Any(i=> i.CardFace==CardFace.Ace))
+            {
+                sum += 10;
+            }
+
             return sum;
         }
 

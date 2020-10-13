@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using BlackJack;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace BlackJackTests
 {

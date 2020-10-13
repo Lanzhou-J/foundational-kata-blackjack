@@ -18,12 +18,12 @@ namespace BlackJack
                 index++;
                 Console.WriteLine($"Dealer's sum = {Sum()}");
                 PrintHandCard();
+                Console.WriteLine();
                 if (DetermineBust())
                 {
                     return true;
                 }
             }
-                
             return false;
         }
 
@@ -31,7 +31,7 @@ namespace BlackJack
         {
         }
         
-        public Dealer() : base()
+        public Dealer()
         {
         }
     }
