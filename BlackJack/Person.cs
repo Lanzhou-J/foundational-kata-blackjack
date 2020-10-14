@@ -55,7 +55,8 @@ namespace BlackJack
 
             if (sum <= 11 && CardsInHand.Any(i=> i.CardFace==CardFace.Ace))
             {
-                sum += 10;
+
+                sum = sum - 1 + 11;
             }
 
             return sum;
