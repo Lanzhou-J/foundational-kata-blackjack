@@ -46,8 +46,10 @@ namespace BlackJack
 
             var newCardFour = ShuffledDeck.PopCard();
             Dealer.DrawCard(newCardFour);
+        }
 
         }
+
 
         public void GamePlay()
         {
@@ -67,6 +69,7 @@ namespace BlackJack
                     break;
                 }
         
+
                 if (playerIsBusted)
                 {
                     _iio.Output("Player is busted. Dealer wins!!"); 
@@ -84,6 +87,7 @@ namespace BlackJack
             {
                 _iio.Output("The dealer has busted. Player is the winner!!");
                 // Environment.Exit(1);
+
             }
             CheckForWinner();
         }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BlackJack;
 using Xunit;
+
 namespace BlackJackTests
 {
     public class PersonTests
@@ -25,6 +26,7 @@ namespace BlackJackTests
             Card newCard3 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
             Person newPerson = new Person(listOfCardsForTest);
+
             Assert.False(newPerson.DetermineBlackjack());
         }
         

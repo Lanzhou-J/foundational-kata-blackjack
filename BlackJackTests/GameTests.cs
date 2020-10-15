@@ -32,7 +32,6 @@ namespace BlackJackTests
             var newCardTwoForListTwo = new Card(CardFace.Jack, Suit.Heart);
             
             var actualResult = CheckForWinnerGetActualResult(newCard, newCard2, newCardForListTwo, newCardTwoForListTwo);
-
             Assert.Equal("Player and dealer have tied. Nobody wins.", actualResult);
         }
         
@@ -44,8 +43,8 @@ namespace BlackJackTests
             
             Card newCardForListTwo = new Card(CardFace.Nine, Suit.Spade);
             Card newCardTwoForListTwo = new Card(CardFace.Jack, Suit.Heart);
-            
             var actualResult = CheckForWinnerGetActualResult(newCard, newCard2, newCardForListTwo, newCardTwoForListTwo);
+
             
             Assert.Equal("Dealers hand of cards is larger. Dealer has won!!", actualResult);
         }
@@ -58,8 +57,8 @@ namespace BlackJackTests
             
             Card newCardForListTwo = new Card(CardFace.Nine, Suit.Spade);
             Card newCardTwoForListTwo = new Card(CardFace.Jack, Suit.Heart);
-            
             var actualResult = CheckForWinnerGetActualResult(newCard, newCard2, newCardForListTwo, newCardTwoForListTwo);
+
 
             Assert.Equal("Players hand of cards is larger. Player has won!!", actualResult);
         }

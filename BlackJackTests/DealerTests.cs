@@ -50,6 +50,7 @@ namespace BlackJackTests
             var newDealer1 = new Dealer();
             newDealer1.Play(listOfCardsForTest);
             Assert.Equal(5, newDealer1.CardsInHand.Count);
+
         }
     }
 }
