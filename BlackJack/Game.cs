@@ -48,9 +48,7 @@ namespace BlackJack
             Dealer.DrawCard(newCardFour);
         }
 
-        }
-
-
+        
         public void GamePlay()
         {
             var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
