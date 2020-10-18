@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlTypes;
 
 namespace BlackJack
 {
@@ -14,6 +15,8 @@ namespace BlackJack
 
         private Player Player { get; }
         private Dealer Dealer { get; }
+        
+        private bool StateOfGamePlay = true;
 
         private Deck ShuffledDeck { get; }
         private readonly IInputOutput _iio;
@@ -38,7 +41,7 @@ namespace BlackJack
             if (Player.DetermineBlackjack())
             {
                 _iio.Output("Player has won!! Yay!");
-                // Environment.Exit(1);
+                StateOfGamePlay = false;
             }
 
             var newCardThree = ShuffledDeck.PopCard();
@@ -48,48 +51,53 @@ namespace BlackJack
             Dealer.DrawCard(newCardFour);
         }
 
-        
+
         public void GamePlay()
         {
-            var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
-            while (choice != "0")
+            while (StateOfGamePlay)
             {
-                var newHitCard = ShuffledDeck.PopCard();
-                var playerIsBusted = Player.Hit(newHitCard);
-                _iio.Output("with a hand of: ");
-                Player.PrintHandCard();               
-        
-                if (Player.DetermineBlackjack())
+                var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+                while (choice != "0")
                 {
-                    _iio.Output("Player has won Blackjack!!! Yay!");
-                    // Environment.Exit(1);
-                    //TO-DO: need to set state of the game to mark the end of the game - out of the loop
-                    break;
-                }
-        
+                    var newHitCard = ShuffledDeck.PopCard();
+                    var playerIsBusted = Player.Hit(newHitCard);
+                    _iio.Output("with a hand of: ");
+                    Player.PrintHandCard();
 
-                if (playerIsBusted)
-                {
-                    _iio.Output("Player is busted. Dealer wins!!"); 
-                    // Environment.Exit(1);
-                    break;
-                }
-                else
-                {
-                    choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
-                }
-            }
-    
-            var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
-            if (dealerIsBusted)
-            {
-                _iio.Output("The dealer has busted. Player is the winner!!");
-                // Environment.Exit(1);
+                    if (Player.DetermineBlackjack())
+                    {
+                        _iio.Output("Player has won Blackjack!!! Yay!");
+                        StateOfGamePlay = false;
+                        //TO-DO: need to set state of the game to mark the end of the game - out of the loop
+                    }
 
+
+                    if (playerIsBusted)
+                    {
+                        _iio.Output("Player is busted. Dealer wins!!");
+                        StateOfGamePlay = false;
+                    }
+                    else
+                    {
+                        choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+                    }
+                }
+
+                var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
+                if (dealerIsBusted)
+                {
+                    _iio.Output("The dealer has busted. Player is the winner!!");
+                    StateOfGamePlay = false;
+
+                }
+
+                CheckForWinner();
             }
-            CheckForWinner();
+
+            Console.WriteLine("state returned");
         }
-
+        
+        
         public string CheckForWinner()
         {
             var outcome = "";
