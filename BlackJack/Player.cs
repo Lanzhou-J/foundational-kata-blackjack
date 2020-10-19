@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace BlackJack
@@ -15,11 +13,11 @@ namespace BlackJack
             return DetermineBust();
         }
         
-        public Player(string name, List<Card> cardsInHand) : base(name, cardsInHand)
+        public Player(List<Card> cardsInHand) : base(cardsInHand)
         {
         }
         
-        public Player(string name) : base(name)
+        public Player()
         {
         }
     }

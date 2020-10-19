@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 namespace BlackJack
@@ -20,20 +18,20 @@ namespace BlackJack
                 index++;
                 Console.WriteLine($"Dealer's sum = {Sum()}");
                 PrintHandCard();
+                Console.WriteLine();
                 if (DetermineBust())
                 {
                     return true;
                 }
             }
-                
             return false;
         }
 
-        public Dealer(string name, List<Card> cardsInHand) : base(name, cardsInHand)
+        public Dealer(List<Card> cardsInHand) : base(cardsInHand)
         {
         }
         
-        public Dealer(string name) : base(name)
+        public Dealer()
         {
         }
     }

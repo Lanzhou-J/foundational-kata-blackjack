@@ -1,33 +1,28 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlackJack
 {
     public class Person
     {
-        public string Name { get; set; }
-        
-        public readonly List<Card> CardsInHand;
-        
-        public Person(string name, List<Card> cardsInHand)
+        public List<Card> CardsInHand { get; }
+        // private readonly IInputOutput _iio;
+
+        public Person(List<Card> cardsInHand)
         {
-            Name = name;
             CardsInHand = cardsInHand;
         }
-        
-        public Person(string name)
+
+        protected Person()
         {
-            Name = name;
             CardsInHand = new List<Card>();
         }
 
         public void PrintHandCard()
         {
-            foreach(var card in CardsInHand)
+            foreach (var cardString in CardsInHand.Select(card => card.ToString()))
             {
-                var cardString = card.FormatCardString();
                 Console.WriteLine(cardString);
             }
         }
@@ -51,15 +46,21 @@ namespace BlackJack
             {
                 if (card.CardFace == CardFace.Jack || card.CardFace == CardFace.Queen || card.CardFace == CardFace.King)
                 {
-                    sum = sum + 10;
+                    sum += 10;
                 }
                 else
                 {
-                    int i = Convert.ToInt32(card.CardFace);
-                    sum = sum + i;
+                    var i = Convert.ToInt32(card.CardFace);
+                    sum += i;
                 }
             }
-            
+
+            if (sum <= 11 && CardsInHand.Any(i=> i.CardFace==CardFace.Ace))
+            {
+
+                sum = sum - 1 + 11;
+            }
+
             return sum;
         }
 

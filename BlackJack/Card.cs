@@ -1,5 +1,3 @@
-using System.Xml;
-
 namespace BlackJack
 {
     public class Card
@@ -10,10 +8,10 @@ namespace BlackJack
             Suit = suit;
         }
 
-        public CardFace CardFace { get; private set; }
-        public Suit Suit { get; private set; }
+        public CardFace CardFace { get; }
+        public Suit Suit { get; }
 
-        public string FormatCardString()
+        public override string ToString()
         {
             var newString = ($"[{CardFace.ToString()}, {Suit.ToString()}]");
             return newString;

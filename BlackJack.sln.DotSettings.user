@@ -1,19 +1,20 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9478be85_002D05a3_002D4d67_002Daef3_002D79cee9947f87/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DetermineBlackjackShould_ReturnTrue_When21" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2b3cbfc0_002Db21b_002D45e4_002D9384_002D14febbbe3384/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GamePlayShould_NotEnablePlayerDrawCard_WhenPlayerInputStayResponse" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.PersonTests.DetermineBlackjackShould_ReturnTrue_When21&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.PersonTests.DrawCard_Should_CardsInHandIncrementByOne&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.PersonTests.DrawCard_Should_IncrementCardsInHandByOne&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests.Start_Should_InitializeTwoCardsInHandForPlayerAndDealer&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests.CheckForWinner_Should_CompareDealerAndPlayerSumAndReturnCorrectString&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests.GamePlayShould_NotEnablePlayerDrawCard_WhenPlayerInputStayResponse&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=de170ac3_002Df440_002D4322_002Daed5_002Da4b3fb95a3c2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="FormatCardStringShould_ReturnCorrectStringPattern" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  <s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4803716b_002D031d_002D4581_002D9652_002Dc5d1e2af59e4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=985b5cf2_002Dbca8_002D40d0_002D8b15_002D06b747038074/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ba2df539_002Dbaf2_002D41d0_002Dbb12_002D2ebd7824924b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f61235b8_002D9079_002D4647_002D9597_002Ddc311f6bb0ed/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PopCardShould_ReturnFirstCardFromDeckOfCards" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.DeckTests.PopCardShould_ReturnFirstCardFromDeckOfCards&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
