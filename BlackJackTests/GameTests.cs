@@ -81,7 +81,6 @@ namespace BlackJackTests
         [Fact]
         public void GamePlayShould_NotEnablePlayerDrawCard_WhenPlayerInputStayResponse()
         {
-            
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
@@ -96,7 +95,6 @@ namespace BlackJackTests
         [Fact]
         public void GamePlayShould_EnablePlayerDrawCard_WhenPlayerInputHitStayResponse()
         {
-            
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
@@ -106,6 +104,25 @@ namespace BlackJackTests
             Assert.Equal(2, newPlayer.CardsInHand.Count);
             newGame.GamePlay();
             Assert.Equal(3, newPlayer.CardsInHand.Count);
+        }
+        
+        [Fact]
+        public void GamePlayShould_ReturnMockListOfCards_AndPresentPlayerWinsOutcome()
+        {
+            Card playerCard1 = new Card(CardFace.Three, Suit.Heart);
+            Card playerCard2 = new Card(CardFace.Ten, Suit.Club);
+            Card dealerCard3 = new Card(CardFace.Ten, Suit.Spade);
+            Card dealerCard4 = new Card(CardFace.Ten, Suit.Heart);
+            Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
+            List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
+            Player newPlayer = new Player();
+            Dealer newDealer = new Dealer();
+            MockDeck newDeck = new MockDeck(listOfMockCards);
+            IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
+            Game newGame = new Game(newPlayer, newDealer, newDeck, iio);
+            Assert.Equal(GameState.Initial, newGame.GameState);
+            newGame.GamePlay();
+            Assert.Equal(GameState.PlayerWon, newGame.GameState);
         }
     }
 }

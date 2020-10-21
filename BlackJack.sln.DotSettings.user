@@ -7,6 +7,9 @@
   <s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4803716b_002D031d_002D4581_002D9652_002Dc5d1e2af59e4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=65d23fa5_002D93a2_002D4176_002Db4c7_002D32c79da722d6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GamePlayShould_ReturnMockListOfCards_AndPresentPlayerWinsOutcome" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=985b5cf2_002Dbca8_002D40d0_002D8b15_002D06b747038074/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
