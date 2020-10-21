@@ -1,7 +1,13 @@
+using System.Collections.Generic;
+
 namespace BlackJack
 {
-    public class IDeck
+    public interface IDeck
     {
-        
+        public List<Card> CreateADeck();
+        public List<Card> Cards { get; }
+        public Card PopCard();
     }
 }
+
+

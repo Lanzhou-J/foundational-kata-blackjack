@@ -1,4 +1,10 @@
-$HEADER$namespace $NAMESPACE$
+namespace BlackJack
 {
-  public enum $ENUM$ {$END$}
+    public enum GameState
+    {
+        Initial,
+        PlayerWon,
+        DealerWon,
+        Tie
+    }
 }

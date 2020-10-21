@@ -5,30 +5,30 @@ namespace BlackJack
 {
     public class Game
     {
-        public Game(Player player, Dealer dealer, Deck shuffledDeck, IInputOutput iio)
+        public Game(Player player, Dealer dealer, IDeck shuffledDeck, IInputOutput iio, GameState gameState = GameState.Initial)
         {
             Player = player;
             Dealer = dealer;
             ShuffledDeck = shuffledDeck;
             _iio = iio;
+            GameState = gameState;
         }
 
         private Player Player { get; }
         private Dealer Dealer { get; }
         
-        private bool StateOfGamePlay = true;
+        private bool _stateOfGamePlay = true;
 
-        private Deck ShuffledDeck { get; }
+        private IDeck ShuffledDeck { get; }
         private readonly IInputOutput _iio;
+        
+        public GameState GameState { get; private set; }
 
         public void Start()
         {
             Console.Clear();
             var newCard = ShuffledDeck.PopCard();
             Player.DrawCard(newCard);
-
-
-
             var newCardTwo = ShuffledDeck.PopCard();
 
             Player.DrawCard(newCardTwo);
@@ -41,7 +41,7 @@ namespace BlackJack
             if (Player.DetermineBlackjack())
             {
                 _iio.Output("Player has won!! Yay!");
-                StateOfGamePlay = false;
+                _stateOfGamePlay = false;
             }
 
             var newCardThree = ShuffledDeck.PopCard();
@@ -49,15 +49,14 @@ namespace BlackJack
 
             var newCardFour = ShuffledDeck.PopCard();
             Dealer.DrawCard(newCardFour);
+            GamePlay();
         }
 
 
         public void GamePlay()
         {
-            while (StateOfGamePlay)
-            {
-                var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
-                while (choice != "0")
+            var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+                while (choice != "0" && _stateOfGamePlay)
                 {
                     var newHitCard = ShuffledDeck.PopCard();
                     var playerIsBusted = Player.Hit(newHitCard);
@@ -66,35 +65,37 @@ namespace BlackJack
 
                     if (Player.DetermineBlackjack())
                     {
+                        GameState = GameState.PlayerWon;
                         _iio.Output("Player has won Blackjack!!! Yay!");
-                        StateOfGamePlay = false;
-                        //TO-DO: need to set state of the game to mark the end of the game - out of the loop
+                        _stateOfGamePlay = false;
                     }
-
-
+                    
                     if (playerIsBusted)
                     {
+                        GameState = GameState.DealerWon;
                         _iio.Output("Player is busted. Dealer wins!!");
-                        StateOfGamePlay = false;
+                        _stateOfGamePlay = false;
                     }
+
                     else
                     {
                         choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
                     }
                 }
 
-                var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
-                if (dealerIsBusted)
+                if (_stateOfGamePlay)
                 {
-                    _iio.Output("The dealer has busted. Player is the winner!!");
-                    StateOfGamePlay = false;
+                    var dealerIsBusted = Dealer.Play(ShuffledDeck.Cards);
+                    if (dealerIsBusted)
+                    {
+                        GameState = GameState.PlayerWon;
+                        _iio.Output("The dealer has busted. Player is the winner!!");
+                        _stateOfGamePlay = false;
 
+                    }
+                    CheckForWinner();
                 }
-
-                CheckForWinner();
-            }
-
-            Console.WriteLine("state returned");
+                
         }
         
         
@@ -103,17 +104,20 @@ namespace BlackJack
             var outcome = "";
             if (Dealer.Sum() == Player.Sum())
             {
+                GameState = GameState.Tie;
                 outcome = ("Player and dealer have tied. Nobody wins.");
                 return outcome;
             } 
             if(Dealer.Sum() > Player.Sum())
             {
+                GameState = GameState.DealerWon;
                 outcome = ("Dealers hand of cards is larger. Dealer has won!!");
                 return outcome;
             }
 
             if(Dealer.Sum() < Player.Sum())
             {
+                GameState = GameState.PlayerWon;
                 outcome = ("Players hand of cards is larger. Player has won!!");
                 return outcome;
             }
