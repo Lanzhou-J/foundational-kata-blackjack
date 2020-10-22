@@ -1,4 +1,5 @@
 using System;
+using System.Data.SqlTypes;
 
 namespace BlackJack
 {
@@ -15,9 +16,12 @@ namespace BlackJack
 
         private Player Player { get; }
         private Dealer Dealer { get; }
+        
+        private bool _stateOfGamePlay = true;
 
-        private Deck ShuffledDeck { get; }
+        private IDeck ShuffledDeck { get; }
         private readonly IInputOutput _iio;
+
         public GameState GameState { get; private set; }
 
         public void Start()
@@ -45,6 +49,7 @@ namespace BlackJack
 
             var newCardFour = ShuffledDeck.PopCard();
             Dealer.DrawCard(newCardFour);
+            GamePlay();
         }
 
 
@@ -64,7 +69,7 @@ namespace BlackJack
                     GameState = GameState.Continue;
                 }
 
-                if (playerIsBusted)
+                if (_stateOfGamePlay)
                 {
                     _iio.Output("Player is busted. Dealer wins!!");
                     GameState = GameState.DealerWon;
@@ -88,23 +93,27 @@ namespace BlackJack
                 CheckForWinner();
             }
         }
-
+        
+        
         public string CheckForWinner()
         {
             var outcome = "";
             if (Dealer.Sum() == Player.Sum())
             {
+                GameState = GameState.Tie;
                 outcome = ("Player and dealer have tied. Nobody wins.");
                 return outcome;
             } 
             if(Dealer.Sum() > Player.Sum())
             {
+                GameState = GameState.DealerWon;
                 outcome = ("Dealers hand of cards is larger. Dealer has won!!");
                 return outcome;
             }
 
             if(Dealer.Sum() < Player.Sum())
             {
+                GameState = GameState.PlayerWon;
                 outcome = ("Players hand of cards is larger. Player has won!!");
                 return outcome;
             }
