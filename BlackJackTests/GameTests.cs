@@ -81,6 +81,7 @@ namespace BlackJackTests
         [Fact]
         public void GamePlayShould_NotEnablePlayerDrawCard_WhenPlayerInputStayResponse()
         {
+            
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
@@ -95,6 +96,7 @@ namespace BlackJackTests
         [Fact]
         public void GamePlayShould_EnablePlayerDrawCard_WhenPlayerInputHitStayResponse()
         {
+            
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
