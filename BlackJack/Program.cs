@@ -5,7 +5,6 @@
         static void Main()
         {
             var newPlayer = new Player();
-            newPlayer.PrintHandCard();
 
             var newDealer = new Dealer();
 
@@ -15,6 +14,7 @@
             
             var newGame = new Game(newPlayer, newDealer, newDeck, console);
             newGame.Start();
+            newGame.GamePlay();
         }
     }
 }

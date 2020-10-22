@@ -107,5 +107,19 @@ namespace BlackJackTests
             newGame.GamePlay();
             Assert.Equal(3, newPlayer.CardsInHand.Count);
         }
+        
+        [Fact]
+        public void GamePlayShould_EnablePlayerDrawCardTwice_WhenPlayerInputHitResponseTwice()
+        {
+            Player newPlayer = new Player();
+            Dealer newDealer = new Dealer();
+            Deck newDeck = new Deck();
+            var playerResponse = new TestResponder(new[]{HitResponse, HitResponse, StayResponse});
+            Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse);
+            newGame.Start();
+            Assert.Equal(2, newPlayer.CardsInHand.Count);
+            newGame.GamePlay();
+            Assert.Equal(4, newPlayer.CardsInHand.Count);
+        }
     }
 }
