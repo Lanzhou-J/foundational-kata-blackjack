@@ -17,7 +17,5 @@
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f61235b8_002D9079_002D4647_002D9597_002Ddc311f6bb0ed/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PopCardShould_ReturnFirstCardFromDeckOfCards" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
