@@ -1,8 +1,14 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1b82b00d_002Deb68_002D4611_002Db8d2_002Ddd6278894436/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2b3cbfc0_002Db21b_002D45e4_002D9384_002D14febbbe3384/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GamePlayShould_NotEnablePlayerDrawCard_WhenPlayerInputStayResponse" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::031FDE3D-6D4A-43EC-8195-05AFFF459883::.NETCoreApp,Version=v3.1::BlackJackTests.GameTests.GamePlayShould_NotEnablePlayerDrawCard_WhenPlayerInputStayResponse&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2c6c105b_002Dd1fa_002D4537_002Db0e1_002D5fc7342d6593/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
   <s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4803716b_002D031d_002D4581_002D9652_002Dc5d1e2af59e4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
