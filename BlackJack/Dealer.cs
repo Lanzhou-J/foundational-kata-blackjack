@@ -12,12 +12,16 @@ namespace BlackJack
             int index = 0;
             Console.WriteLine("The dealers first two cards are: \n");
             PrintHandCard();
+            Console.WriteLine($"Dealer's sum = {Sum()}");
+            Console.WriteLine();
             while (Sum() < 17)
             {
+                Console.WriteLine("Dealer draws a new card: ");
+                Console.WriteLine();
                 DrawCard(cards[index]);
                 index++;
-                Console.WriteLine($"Dealer's sum = {Sum()}");
                 PrintHandCard();
+                Console.WriteLine($"Dealer's sum = {Sum()}");
                 Console.WriteLine();
                 if (DetermineBust())
                 {

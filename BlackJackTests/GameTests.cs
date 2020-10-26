@@ -121,5 +121,105 @@ namespace BlackJackTests
             newGame.GamePlay();
             Assert.Equal(4, newPlayer.CardsInHand.Count);
         }
+        
+        [Fact]
+        public void GamePlayShould_UseMockListOfCards_AndPresentPlayerWinsOutcome()
+        {
+            Card playerCard1 = new Card(CardFace.Three, Suit.Heart);
+            Card playerCard2 = new Card(CardFace.Ten, Suit.Club);
+            Card dealerCard3 = new Card(CardFace.Ten, Suit.Spade);
+            Card dealerCard4 = new Card(CardFace.Ten, Suit.Heart);
+            Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
+            List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
+            Player player1 = new Player();
+            Dealer dealer1 = new Dealer();
+            MockDeck deck = new MockDeck(listOfMockCards);
+            IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
+            Game newGame = new Game(player1, dealer1, deck, iio);
+            newGame.Start();
+            Assert.Equal(GameState.Continue, newGame.GameState);
+            newGame.GamePlay();
+            Assert.Equal(GameState.PlayerWon, newGame.GameState);
+        }
+        
+        [Fact]
+        public void GamePlayShould_UseMockListOfCards_AndPresentDealerWinsOutcome()
+        {
+            Card playerCard1 = new Card(CardFace.Three, Suit.Heart);
+            Card playerCard2 = new Card(CardFace.Four, Suit.Club);
+            Card dealerCard3 = new Card(CardFace.Ten, Suit.Spade);
+            Card dealerCard4 = new Card(CardFace.Ace, Suit.Heart);
+            Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
+            List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
+            Player player1 = new Player();
+            Dealer dealer1 = new Dealer();
+            MockDeck deck = new MockDeck(listOfMockCards);
+            IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
+            Game newGame = new Game(player1, dealer1, deck, iio);
+            newGame.Start();
+            Assert.Equal(GameState.Continue, newGame.GameState);
+            newGame.GamePlay();
+            Assert.Equal(GameState.DealerWon, newGame.GameState);
+        }
+        
+        [Fact]
+        public void GamePlayShould_UseMockListOfCards_AndBothPlayerAndDealerHaveBlackjack()
+        {
+            Card playerCard1 = new Card(CardFace.Three, Suit.Heart);
+            Card playerCard2 = new Card(CardFace.Ten, Suit.Club);
+            Card dealerCard3 = new Card(CardFace.Ten, Suit.Spade);
+            Card dealerCard4 = new Card(CardFace.Ace, Suit.Heart);
+            Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
+            List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
+            Player player1 = new Player();
+            Dealer dealer1 = new Dealer();
+            MockDeck deck = new MockDeck(listOfMockCards);
+            IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
+            Game newGame = new Game(player1, dealer1, deck, iio);
+            newGame.Start();
+            Assert.Equal(GameState.Continue, newGame.GameState);
+            newGame.GamePlay();
+            Assert.Equal(GameState.Tie, newGame.GameState);
+        }
+        
+        [Fact]
+        public void GamePlayShould_UseMockListOfCards_AndNeitherPlayerOrDealerHaveBlackjack()
+        {
+            Card playerCard1 = new Card(CardFace.Three, Suit.Heart);
+            Card playerCard2 = new Card(CardFace.Four, Suit.Club);
+            Card dealerCard3 = new Card(CardFace.Ten, Suit.Spade);
+            Card dealerCard4 = new Card(CardFace.Ten, Suit.Heart);
+            Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
+            List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
+            Player player1 = new Player();
+            Dealer dealer1 = new Dealer();
+            MockDeck deck = new MockDeck(listOfMockCards);
+            IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
+            Game newGame = new Game(player1, dealer1, deck, iio);
+            newGame.Start();
+            Assert.Equal(GameState.Continue, newGame.GameState);
+            newGame.GamePlay();
+            Assert.Equal(GameState.DealerWon, newGame.GameState);
+        }
+        
+        [Fact]
+        public void GamePlayShould_UseNewMockListOfCards_AndPlayerShouldBustAndDealerWins()
+        {
+            Card playerCard1 = new Card(CardFace.Four, Suit.Heart);
+            Card playerCard2 = new Card(CardFace.Ten, Suit.Club);
+            Card dealerCard3 = new Card(CardFace.Ten, Suit.Spade);
+            Card dealerCard4 = new Card(CardFace.Ten, Suit.Heart);
+            Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
+            List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
+            Player player1 = new Player();
+            Dealer dealer1 = new Dealer();
+            MockDeck deck = new MockDeck(listOfMockCards);
+            IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
+            Game newGameTwo = new Game(player1, dealer1, deck, iio);
+            newGameTwo.Start();
+            Assert.Equal(GameState.Continue, newGameTwo.GameState);
+            newGameTwo.GamePlay();
+            Assert.Equal(GameState.DealerWon, newGameTwo.GameState);
+        }
     }
 }
