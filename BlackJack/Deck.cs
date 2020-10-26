@@ -4,8 +4,9 @@ using static System.Linq.Enumerable;
 
 namespace BlackJack
 {
-    public class Deck
+    public class Deck:IDeck
     {
+
         public List<Card> Cards { get; }
 
         public Deck()
@@ -13,7 +14,7 @@ namespace BlackJack
             Cards = CreateADeck();
         }
         
-        private static List<Card> CreateADeck()
+        public List<Card> CreateADeck()
         {
             var newList = (from CardFace name in Enum.GetValues(typeof(CardFace)) from Suit suitName in Enum.GetValues(typeof(Suit)) select new Card(name, suitName)).ToList();
             var shuffledList = newList.OrderBy(x => Guid.NewGuid()).ToList();
