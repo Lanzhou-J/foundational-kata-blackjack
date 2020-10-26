@@ -168,5 +168,6 @@ namespace BlackJackTests
             Person newPerson = new Person(listOfCardsForTest);
             Assert.Equal(19,newPerson.Sum());
         }
+        
     }
 }

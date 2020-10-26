@@ -9,5 +9,3 @@ namespace BlackJack
         public Card PopCard();
     }
 }
-
-
