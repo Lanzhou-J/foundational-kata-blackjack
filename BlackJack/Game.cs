@@ -22,21 +22,16 @@ namespace BlackJack
 
         public void Start()
         {
-            _iio.Clear();
-            var newCard = ShuffledDeck.PopCard();
-            Player.Deck.DrawCard(newCard);
-            var newCardTwo = ShuffledDeck.PopCard();
+            ClearPreviousOutput();
+            PlayerTake2CardsFromShuffledDeck();
 
-            Player.Deck.DrawCard(newCardTwo);
-            
             _iio.Output("Your first two cards are: ");
             _iio.Output(Player.Deck);
-
             _iio.Output($"You are currently at {Player.Sum()}");
 
             if (Player.DetermineBlackjack())
             {
-                _iio.Output("Player has won!! Yay!");
+                // _iio.Output("Player has won!! Yay!");
                 GameState = GameState.Continue;
             }
 
@@ -45,6 +40,19 @@ namespace BlackJack
 
             var newCardFour = ShuffledDeck.PopCard();
             Dealer.Deck.DrawCard(newCardFour);
+        }
+
+        private void PlayerTake2CardsFromShuffledDeck()
+        {
+            var newCard = ShuffledDeck.PopCard();
+            Player.Deck.DrawCard(newCard);
+            var newCardTwo = ShuffledDeck.PopCard();
+            Player.Deck.DrawCard(newCardTwo);
+        }
+
+        private void ClearPreviousOutput()
+        {
+            _iio.Clear();
         }
 
 
@@ -84,7 +92,6 @@ namespace BlackJack
                     GameState = GameState.PlayerWon;
 
                 }
-
                 CheckForWinner();
             }
         }
