@@ -27,13 +27,24 @@ namespace BlackJack
             DealerTake2CardsFromShuffledDeck();
             
             OutputPlayersFirst2CardsAndSum();
+            OutputMessageWhenPlayerGotBlackjack();
         }
 
         private void OutputPlayersFirst2CardsAndSum()
         {
             _iio.Output("Your first two cards are: ");
-            _iio.Output(Player.Deck);
+            OutputPlayersDeck();
+            OutputPlayersSum();
+        }
+
+        private void OutputPlayersSum()
+        {
             _iio.Output($"You are currently at {Player.Sum()}");
+        }
+
+        private void OutputPlayersDeck()
+        {
+            _iio.Output(Player.Deck);
         }
 
         private void DealerTake2CardsFromShuffledDeck()
@@ -58,22 +69,17 @@ namespace BlackJack
             _iio.Clear();
         }
 
-
         public void GamePlay()
         {
-            var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+            var choice = AskPlayersChoice();
             while (choice != "0" && GameState == GameState.Continue)
             {
                 var newHitCard = ShuffledDeck.PopCard();
                 var playerIsBusted = Player.Hit(newHitCard);
                 _iio.Output("with a hand of: ");
-                _iio.Output(Player.Deck);
+                OutputPlayersDeck();
 
-                if (Player.DetermineBlackjack())
-                {
-                    _iio.Output("Player has won Blackjack!!! Yay!");
-                    GameState = GameState.Continue;
-                }
+                OutputMessageWhenPlayerGotBlackjack();
 
                 if (playerIsBusted)
                 {
@@ -82,7 +88,7 @@ namespace BlackJack
                 }
                 else
                 {
-                    choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+                    choice = AskPlayersChoice();
                 }
             }
 
@@ -97,6 +103,21 @@ namespace BlackJack
                 }
                 CheckForWinner();
             }
+        }
+
+        private void OutputMessageWhenPlayerGotBlackjack()
+        {
+            if (Player.DetermineBlackjack())
+            {
+                _iio.Output("Player has got Blackjack!!! Yay!");
+                GameState = GameState.Continue;
+            }
+        }
+
+        private string AskPlayersChoice()
+        {
+            var choice = _iio.Ask("Hit or stay? (Hit = 1, Stay = 0)");
+            return choice;
         }
 
         public string CheckForWinner()
