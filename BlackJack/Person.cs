@@ -6,26 +6,26 @@ namespace BlackJack
 {
     public class Person
     {
-        public List<Card> CardsInHand { get; }
-        // private readonly IInputOutput _iio;
+        public Deck Deck { get; }
 
-        public Person(List<Card> cardsInHand)
+        public Person(Deck deck)
         {
-            CardsInHand = cardsInHand;
+            Deck = deck;
         }
 
         protected Person()
         {
-            CardsInHand = new List<Card>();
+            var cards = new List<Card>();
+            Deck = new Deck(cards);
         }
 
-        public void PrintHandCard()
-        {
-            foreach (var cardString in CardsInHand.Select(card => card.ToString()))
-            {
-                Console.WriteLine(cardString);
-            }
-        }
+        // public void PrintHandCard()
+        // {
+        //     foreach (var cardString in Deck.Select(card => card.ToString()))
+        //     {
+        //         Console.WriteLine(cardString);
+        //     }
+        // }
 
         public bool DetermineBust()
         {
@@ -42,7 +42,7 @@ namespace BlackJack
         public int Sum()
         {
             var sum = 0;
-            foreach (var card in CardsInHand)
+            foreach (var card in Deck.Cards)
             {
                 if (card.CardFace == CardFace.Jack || card.CardFace == CardFace.Queen || card.CardFace == CardFace.King)
                 {
@@ -55,7 +55,7 @@ namespace BlackJack
                 }
             }
 
-            if (sum <= 11 && CardsInHand.Any(i=> i.CardFace==CardFace.Ace))
+            if (sum <= 11 && Deck.Cards.Any(i=> i.CardFace==CardFace.Ace))
             {
 
                 sum = sum - 1 + 11;
@@ -64,9 +64,9 @@ namespace BlackJack
             return sum;
         }
 
-        public void DrawCard(Card card)
-        {
-            CardsInHand.Add(card);
-        }
+        // public void DrawCard(Card card)
+        // {
+        //     CardsInHand.Add(card);
+        // }
     }
 }

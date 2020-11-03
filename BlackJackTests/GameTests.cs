@@ -17,8 +17,8 @@ namespace BlackJackTests
             var console = new ConsoleInputOutput();
             Game newGame = new Game(newPlayer, newDealer, newDeck, console);
             newGame.Start();
-            Assert.Equal(2, newDealer.CardsInHand.Count);
-            Assert.Equal(2, newPlayer.CardsInHand.Count);
+            Assert.Equal(2, newDealer.Deck.Cards.Count);
+            Assert.Equal(2, newPlayer.Deck.Cards.Count);
             Assert.Equal(48, newDeck.Cards.Count);
         }
         
@@ -68,8 +68,8 @@ namespace BlackJackTests
             var listOfCardsForTest = new List<Card>() {newCard, newCard2};
             var listTwoOfCardsForTest = new List<Card>() {newCardForListTwo, newCardTwoForListTwo};
 
-            var newPlayer = new Player(listOfCardsForTest);
-            var newDealer = new Dealer(listTwoOfCardsForTest);
+            var newPlayer = new Player(new Deck(listOfCardsForTest));
+            var newDealer = new Dealer(new Deck(listTwoOfCardsForTest));
             var console = new ConsoleInputOutput();
             var newDeck = new Deck();
 
@@ -88,9 +88,9 @@ namespace BlackJackTests
             var playerResponse = new TestResponder(new[]{StayResponse});
             Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse);
             newGame.Start();
-            Assert.Equal(2, newPlayer.CardsInHand.Count);
+            Assert.Equal(2, newPlayer.Deck.Cards.Count);
             newGame.GamePlay();
-            Assert.Equal(2, newPlayer.CardsInHand.Count);
+            Assert.Equal(2, newPlayer.Deck.Cards.Count);
         }
         
         [Fact]
@@ -103,9 +103,9 @@ namespace BlackJackTests
             var playerResponse = new TestResponder(new[]{HitResponse,StayResponse});
             Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse);
             newGame.Start();
-            Assert.Equal(2, newPlayer.CardsInHand.Count);
+            Assert.Equal(2, newPlayer.Deck.Cards.Count);
             newGame.GamePlay();
-            Assert.Equal(3, newPlayer.CardsInHand.Count);
+            Assert.Equal(3, newPlayer.Deck.Cards.Count);
         }
         
         [Fact]
@@ -124,9 +124,9 @@ namespace BlackJackTests
             var playerResponse = new TestResponder(new[]{HitResponse, HitResponse, StayResponse});
             Game newGame = new Game(newPlayer, newDealer, deck, playerResponse);
             newGame.Start();
-            Assert.Equal(2, newPlayer.CardsInHand.Count);
+            Assert.Equal(2, newPlayer.Deck.Cards.Count);
             newGame.GamePlay();
-            Assert.Equal(4, newPlayer.CardsInHand.Count);
+            Assert.Equal(4, newPlayer.Deck.Cards.Count);
         }
         
         [Fact]

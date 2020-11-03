@@ -5,15 +5,15 @@ namespace BlackJack
 {
     public class Player : Person
     {
-        public bool Hit(Card newCard)
+        public bool Hit(Card card)
         {
-            DrawCard(newCard);
+            Deck.DrawCard(card);
             Sum();
             Console.WriteLine($"You are currently at {Sum()}");
             return DetermineBust();
         }
         
-        public Player(List<Card> cardsInHand) : base(cardsInHand)
+        public Player(Deck deck) : base(deck)
         {
         }
         

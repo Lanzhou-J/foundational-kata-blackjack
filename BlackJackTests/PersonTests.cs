@@ -14,7 +14,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Ten, Suit.Club);
             Card newCard3 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.True(newPerson.DetermineBlackjack());
         }
         
@@ -25,7 +25,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Nine, Suit.Club);
             Card newCard3 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
 
             Assert.False(newPerson.DetermineBlackjack());
         }
@@ -37,7 +37,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Nine, Suit.Club);
             Card newCard3 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.False(newPerson.DetermineBlackjack());
         }
         
@@ -48,7 +48,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Nine, Suit.Club);
             Card newCard3 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.True(newPerson.DetermineBust());
         }
         
@@ -59,7 +59,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Nine, Suit.Club);
             Card newCard3 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.False(newPerson.DetermineBust());
         }
         
@@ -70,7 +70,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Nine, Suit.Club);
             Card newCard3 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.False(newPerson.DetermineBust());
         }
         
@@ -79,7 +79,7 @@ namespace BlackJackTests
         {
             Card newCard = new Card(CardFace.Nine, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(9,newPerson.Sum());
         }
         
@@ -89,7 +89,7 @@ namespace BlackJackTests
             Card newCard = new Card(CardFace.Nine, Suit.Club);
             Card newCard2 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(19,newPerson.Sum());
         }
         
@@ -99,7 +99,7 @@ namespace BlackJackTests
             Card newCard = new Card(CardFace.Ace, Suit.Club);
             Card newCard2 = new Card(CardFace.Ten, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(21,newPerson.Sum());
         }
         
@@ -109,7 +109,7 @@ namespace BlackJackTests
             Card newCard = new Card(CardFace.Ace, Suit.Club);
             Card newCard2 = new Card(CardFace.Jack, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(21,newPerson.Sum());
         }
         
@@ -120,7 +120,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Seven, Suit.Club);
             Card newCard3 = new Card(CardFace.Nine, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(17,newPerson.Sum());
         }
         
@@ -131,7 +131,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Ace, Suit.Spade);
             Card newCard3 = new Card(CardFace.Nine, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(21,newPerson.Sum());
         }
         
@@ -143,7 +143,7 @@ namespace BlackJackTests
             Card newCard3 = new Card(CardFace.Ace, Suit.Club);
             Card newCard4 = new Card(CardFace.Eight, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3, newCard4};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(21,newPerson.Sum());
         }
         
@@ -154,7 +154,7 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Two, Suit.Spade);
             Card newCard3 = new Card(CardFace.Ace, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(14,newPerson.Sum());
         }
         
@@ -165,9 +165,8 @@ namespace BlackJackTests
             Card newCard2 = new Card(CardFace.Ten, Suit.Spade);
             Card newCard3 = new Card(CardFace.Ace, Suit.Club);
             List<Card> listOfCardsForTest = new List<Card>(){newCard, newCard2, newCard3};
-            Person newPerson = new Person(listOfCardsForTest);
+            Person newPerson = new Person(new Deck(listOfCardsForTest));
             Assert.Equal(19,newPerson.Sum());
         }
-        
     }
 }

@@ -24,13 +24,13 @@ namespace BlackJack
         {
             Console.Clear();
             var newCard = ShuffledDeck.PopCard();
-            Player.DrawCard(newCard);
+            Player.Deck.DrawCard(newCard);
             var newCardTwo = ShuffledDeck.PopCard();
 
-            Player.DrawCard(newCardTwo);
+            Player.Deck.DrawCard(newCardTwo);
             
             _iio.Output("Your first two cards are: ");
-            Player.PrintHandCard();
+            // Player.PrintHandCard();
             
             _iio.Output($"You are currently at {Player.Sum()}");
 
@@ -41,10 +41,10 @@ namespace BlackJack
             }
 
             var newCardThree = ShuffledDeck.PopCard();
-            Dealer.DrawCard(newCardThree);
+            Dealer.Deck.DrawCard(newCardThree);
 
             var newCardFour = ShuffledDeck.PopCard();
-            Dealer.DrawCard(newCardFour);
+            Dealer.Deck.DrawCard(newCardFour);
         }
 
 
@@ -56,7 +56,7 @@ namespace BlackJack
                 var newHitCard = ShuffledDeck.PopCard();
                 var playerIsBusted = Player.Hit(newHitCard);
                 _iio.Output("with a hand of: ");
-                Player.PrintHandCard();
+                // Player.PrintHandCard();
 
                 if (Player.DetermineBlackjack())
                 {

@@ -19,7 +19,7 @@ namespace BlackJackTests
             var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
             var newDealer1 = new Dealer();
             newDealer1.Play(listOfCardsForTest);
-            Assert.Equal(4, newDealer1.CardsInHand.Count);
+            Assert.Equal(4, newDealer1.Deck.Cards.Count);
         }
         
         [Fact]
@@ -34,7 +34,7 @@ namespace BlackJackTests
             var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
             var newDealer1 = new Dealer();
             newDealer1.Play(listOfCardsForTest);
-            Assert.Equal(5, newDealer1.CardsInHand.Count);
+            Assert.Equal(5, newDealer1.Deck.Cards.Count);
         }
         
         [Fact]
@@ -49,7 +49,7 @@ namespace BlackJackTests
             var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
             var newDealer1 = new Dealer();
             newDealer1.Play(listOfCardsForTest);
-            Assert.Equal(5, newDealer1.CardsInHand.Count);
+            Assert.Equal(5, newDealer1.Deck.Cards.Count);
 
         }
     }
