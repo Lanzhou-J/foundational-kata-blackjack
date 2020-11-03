@@ -17,7 +17,8 @@ namespace BlackJackTests
         
         public string Ask(string question)
         {
-            return _testResponses.Dequeue();
+            var response = _testResponses.Dequeue();
+            return response;
         }
 
         public void Output(string message)

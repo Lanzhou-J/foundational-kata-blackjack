@@ -111,11 +111,18 @@ namespace BlackJackTests
         [Fact]
         public void GamePlayShould_EnablePlayerDrawCardTwice_WhenPlayerInputHitResponseTwice()
         {
+            Card playerCard1 = new Card(CardFace.Three, Suit.Heart);
+            Card playerCard2 = new Card(CardFace.Ten, Suit.Club);
+            Card dealerCard1 = new Card(CardFace.Ten, Suit.Spade);
+            Card dealerCard2 = new Card(CardFace.Ten, Suit.Heart);
+            Card playerCard3 = new Card(CardFace.Eight, Suit.Spade);
+            Card playerCard4 = new Card(CardFace.Eight, Suit.Spade);
+            List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard1, dealerCard2, playerCard3, playerCard4};
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
-            Deck newDeck = new Deck();
+            MockDeck deck = new MockDeck(listOfMockCards);
             var playerResponse = new TestResponder(new[]{HitResponse, HitResponse, StayResponse});
-            Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse);
+            Game newGame = new Game(newPlayer, newDealer, deck, playerResponse);
             newGame.Start();
             Assert.Equal(2, newPlayer.CardsInHand.Count);
             newGame.GamePlay();
@@ -215,11 +222,11 @@ namespace BlackJackTests
             Dealer dealer1 = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
-            Game newGameTwo = new Game(player1, dealer1, deck, iio);
-            newGameTwo.Start();
-            Assert.Equal(GameState.Continue, newGameTwo.GameState);
-            newGameTwo.GamePlay();
-            Assert.Equal(GameState.DealerWon, newGameTwo.GameState);
+            Game newGame = new Game(player1, dealer1, deck, iio);
+            newGame.Start();
+            Assert.Equal(GameState.Continue, newGame.GameState);
+            newGame.GamePlay();
+            Assert.Equal(GameState.DealerWon, newGame.GameState);
         }
     }
 }

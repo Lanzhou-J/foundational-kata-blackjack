@@ -64,9 +64,9 @@ namespace BlackJack
             return sum;
         }
 
-        public void DrawCard(Card newCard)
+        public void DrawCard(Card card)
         {
-            CardsInHand.Add(newCard);
+            CardsInHand.Add(card);
         }
     }
 }
