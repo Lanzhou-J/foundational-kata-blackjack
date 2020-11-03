@@ -99,9 +99,11 @@ namespace BlackJack
                 {
                     _iio.Output("The dealer has busted. Player is the winner!!");
                     GameState = GameState.PlayerWon;
-
                 }
-                CheckForWinner();
+                else
+                {
+                    _iio.Output(CheckForWinner());
+                }
             }
         }
 
