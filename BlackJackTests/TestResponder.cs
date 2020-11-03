@@ -28,5 +28,9 @@ namespace BlackJackTests
         public void Output(Deck deck)
         {
         }
+
+        public void Clear()
+        {
+        }
     }
 }

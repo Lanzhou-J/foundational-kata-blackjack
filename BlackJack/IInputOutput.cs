@@ -7,5 +7,7 @@ namespace BlackJack
         void Output(string message);
 
         void Output(Deck deck);
+
+        void Clear();
     }
 }

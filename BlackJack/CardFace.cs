@@ -15,6 +15,5 @@ namespace BlackJack
             Jack,
             Queen,
             King
-        
     }
 }

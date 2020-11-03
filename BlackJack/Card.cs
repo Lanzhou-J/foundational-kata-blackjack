@@ -16,6 +16,5 @@ namespace BlackJack
             var newString = ($"[{CardFace.ToString()}, {Suit.ToString()}]");
             return newString;
         }
-
     }
 }

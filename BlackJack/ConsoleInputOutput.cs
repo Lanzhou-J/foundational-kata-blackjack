@@ -23,5 +23,10 @@ namespace BlackJack
                 Console.WriteLine(cardString);
             }
         }
+
+        public void Clear()
+        {
+            Console.Clear();
+        }
     }
 }
