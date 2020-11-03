@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace BlackJack
 {
@@ -13,6 +14,14 @@ namespace BlackJack
         public void Output(string message)
         {
             Console.WriteLine(message);
+        }
+
+        public void Output(Deck deck)
+        {
+            foreach (var cardString in deck.Cards.Select(card => card.ToString()))
+            {
+                Console.WriteLine(cardString);
+            }
         }
     }
 }

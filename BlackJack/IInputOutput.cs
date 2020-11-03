@@ -5,5 +5,7 @@ namespace BlackJack
         public string Ask(string question);
 
         void Output(string message);
+
+        void Output(Deck deck);
     }
 }

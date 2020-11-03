@@ -19,14 +19,6 @@ namespace BlackJack
             Deck = new Deck(cards);
         }
 
-        // public void PrintHandCard()
-        // {
-        //     foreach (var cardString in Deck.Select(card => card.ToString()))
-        //     {
-        //         Console.WriteLine(cardString);
-        //     }
-        // }
-
         public bool DetermineBust()
         {
             return Sum() > 21;
@@ -63,10 +55,5 @@ namespace BlackJack
 
             return sum;
         }
-
-        // public void DrawCard(Card card)
-        // {
-        //     CardsInHand.Add(card);
-        // }
     }
 }

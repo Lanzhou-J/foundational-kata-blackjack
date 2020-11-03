@@ -24,5 +24,9 @@ namespace BlackJackTests
         public void Output(string message)
         {
         }
+
+        public void Output(Deck deck)
+        {
+        }
     }
 }
