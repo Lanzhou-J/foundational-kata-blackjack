@@ -31,29 +31,6 @@ namespace BlackJack
         }
 
         
-        public int Sum()
-        {
-            var sum = 0;
-            foreach (var card in Deck.Cards)
-            {
-                if (card.CardFace == CardFace.Jack || card.CardFace == CardFace.Queen || card.CardFace == CardFace.King)
-                {
-                    sum += 10;
-                }
-                else
-                {
-                    var i = Convert.ToInt32(card.CardFace);
-                    sum += i;
-                }
-            }
 
-            if (sum <= 11 && Deck.Cards.Any(i=> i.CardFace==CardFace.Ace))
-            {
-
-                sum = sum - 1 + 11;
-            }
-
-            return sum;
-        }
     }
 }
