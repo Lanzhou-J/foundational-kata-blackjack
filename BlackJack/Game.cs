@@ -24,17 +24,25 @@ namespace BlackJack
         {
             ClearPreviousOutput();
             PlayerTake2CardsFromShuffledDeck();
-
-            _iio.Output("Your first two cards are: ");
-            _iio.Output(Player.Deck);
-            _iio.Output($"You are currently at {Player.Sum()}");
-
+            DealerTake2CardsFromShuffledDeck();
+            
+            OutputPlayersFirst2CardsAndSum();
             if (Player.DetermineBlackjack())
             {
                 // _iio.Output("Player has won!! Yay!");
                 GameState = GameState.Continue;
             }
+        }
 
+        private void OutputPlayersFirst2CardsAndSum()
+        {
+            _iio.Output("Your first two cards are: ");
+            _iio.Output(Player.Deck);
+            _iio.Output($"You are currently at {Player.Sum()}");
+        }
+
+        private void DealerTake2CardsFromShuffledDeck()
+        {
             var newCardThree = ShuffledDeck.PopCard();
             Dealer.Deck.DrawCard(newCardThree);
 
