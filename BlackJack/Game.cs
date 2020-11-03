@@ -27,11 +27,6 @@ namespace BlackJack
             DealerTake2CardsFromShuffledDeck();
             
             OutputPlayersFirst2CardsAndSum();
-            if (Player.DetermineBlackjack())
-            {
-                // _iio.Output("Player has won!! Yay!");
-                GameState = GameState.Continue;
-            }
         }
 
         private void OutputPlayersFirst2CardsAndSum()
