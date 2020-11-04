@@ -8,8 +8,8 @@ namespace BlackJack
         public bool Hit(Card card)
         {
             Deck.DrawCard(card);
-            Sum();
-            Console.WriteLine($"You are currently at {Sum()}");
+            var deckSum = Deck.Sum;
+            Console.WriteLine($"You are currently at {deckSum}");
             return DetermineBust();
         }
         

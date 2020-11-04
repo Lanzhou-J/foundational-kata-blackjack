@@ -6,17 +6,19 @@ namespace BlackJack
 {
     public class Deck:IDeck
     {
-
         public List<Card> Cards { get; }
+        public int Sum { get; private set; }
 
         public Deck()
         {
             Cards = CreateADeck();
+            Sum = 0;
         }
         
         public Deck(List<Card> cards)
         {
             Cards = cards;
+            Sum = CalculateSum();
         }
         public List<Card> CreateADeck()
         {
@@ -35,9 +37,10 @@ namespace BlackJack
         public void DrawCard(Card card)
         {
             Cards.Add(card);
+            Sum = CalculateSum();
         }
-        
-        public int Sum()
+
+        private int CalculateSum()
         {
             var sum = 0;
             foreach (var card in Cards)

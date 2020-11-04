@@ -21,16 +21,13 @@ namespace BlackJack
 
         public bool DetermineBust()
         {
-            return Sum() > 21;
+            return Deck.Sum > 21;
         }
         
         public bool DetermineBlackjack()
         {
             
-            return Sum() == 21;
+            return Deck.Sum == 21;
         }
-
-        
-
     }
 }

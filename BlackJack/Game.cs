@@ -39,7 +39,7 @@ namespace BlackJack
 
         private void OutputPlayersSum()
         {
-            _iio.Output($"You are currently at {Player.Sum()}");
+            _iio.Output($"You are currently at {Player.Deck.Sum}");
         }
 
         private void OutputPlayersDeck()
@@ -125,20 +125,20 @@ namespace BlackJack
         public string CheckForWinner()
         {
             var outcome = "";
-            if (Dealer.Sum() == Player.Sum())
+            if (Dealer.Deck.Sum == Player.Deck.Sum)
             {
                 outcome = ("Player and dealer have tied. Nobody wins.");
                 GameState = GameState.Tie;
                 return outcome;
             } 
-            if(Dealer.Sum() > Player.Sum())
+            if(Dealer.Deck.Sum > Player.Deck.Sum)
             {
                 outcome = ("Dealers hand of cards is larger. Dealer has won!!");
                 GameState = GameState.DealerWon;
                 return outcome;
             }
 
-            if(Dealer.Sum() < Player.Sum())
+            if(Dealer.Deck.Sum < Player.Deck.Sum)
             {
                 outcome = ("Players hand of cards is larger. Player has won!!");
                 GameState = GameState.PlayerWon;
