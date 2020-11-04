@@ -6,7 +6,6 @@ namespace BlackJack
     {
         public List<Card> CreateADeck();
         public List<Card> Cards { get; }
-        public int Sum { get; }
         public Card PopCard();
         public void DrawCard(Card card);
     }

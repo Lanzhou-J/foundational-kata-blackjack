@@ -8,8 +8,9 @@
             var newDealer = new Dealer();
             var newDeck = new Deck();
             var console = new ConsoleInputOutput();
+            var rule = new Rule();
             
-            var newGame = new Game(newPlayer, newDealer, newDeck, console);
+            var newGame = new Game(newPlayer, newDealer, newDeck, console, rule);
             newGame.Start();
             newGame.GamePlay();
         }

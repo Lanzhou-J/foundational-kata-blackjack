@@ -15,7 +15,8 @@ namespace BlackJackTests
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
             var console = new ConsoleInputOutput();
-            Game newGame = new Game(newPlayer, newDealer, newDeck, console);
+            var rule = new Rule();
+            Game newGame = new Game(newPlayer, newDealer, newDeck, console, rule);
             newGame.Start();
             Assert.Equal(2, newDealer.Deck.Cards.Count);
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
@@ -72,8 +73,9 @@ namespace BlackJackTests
             var newDealer = new Dealer(new Deck(listTwoOfCardsForTest));
             var console = new ConsoleInputOutput();
             var newDeck = new Deck();
+            var rule = new Rule();
 
-            var newGame = new Game(newPlayer, newDealer, newDeck, console);
+            var newGame = new Game(newPlayer, newDealer, newDeck, console, rule);
             var actualResult = newGame.CheckForWinner();
             return actualResult;
         }
@@ -86,7 +88,8 @@ namespace BlackJackTests
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
             var playerResponse = new TestResponder(new[]{StayResponse});
-            Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse);
+            var rule = new Rule();
+            Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse, rule);
             newGame.Start();
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
             newGame.GamePlay();
@@ -96,12 +99,12 @@ namespace BlackJackTests
         [Fact]
         public void GamePlayShould_EnablePlayerDrawCard_WhenPlayerInputHitStayResponse()
         {
-            
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
             Deck newDeck = new Deck();
+            Rule rule = new Rule();
             var playerResponse = new TestResponder(new[]{HitResponse,StayResponse});
-            Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse);
+            Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse,rule);
             newGame.Start();
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
             newGame.GamePlay();
@@ -121,8 +124,9 @@ namespace BlackJackTests
             Player newPlayer = new Player();
             Dealer newDealer = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
+            Rule rule = new Rule();
             var playerResponse = new TestResponder(new[]{HitResponse, HitResponse, StayResponse});
-            Game newGame = new Game(newPlayer, newDealer, deck, playerResponse);
+            Game newGame = new Game(newPlayer, newDealer, deck, playerResponse, rule);
             newGame.Start();
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
             newGame.GamePlay();
@@ -141,8 +145,9 @@ namespace BlackJackTests
             Player player1 = new Player();
             Dealer dealer1 = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
-            Game newGame = new Game(player1, dealer1, deck, iio);
+            Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
             newGame.GamePlay();
@@ -161,8 +166,9 @@ namespace BlackJackTests
             Player player1 = new Player();
             Dealer dealer1 = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
-            Game newGame = new Game(player1, dealer1, deck, iio);
+            Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
             newGame.GamePlay();
@@ -181,8 +187,9 @@ namespace BlackJackTests
             Player player1 = new Player();
             Dealer dealer1 = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
-            Game newGame = new Game(player1, dealer1, deck, iio);
+            Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
             newGame.GamePlay();
@@ -201,8 +208,9 @@ namespace BlackJackTests
             Player player1 = new Player();
             Dealer dealer1 = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{StayResponse});
-            Game newGame = new Game(player1, dealer1, deck, iio);
+            Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
             newGame.GamePlay();
@@ -221,8 +229,9 @@ namespace BlackJackTests
             Player player1 = new Player();
             Dealer dealer1 = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
-            Game newGame = new Game(player1, dealer1, deck, iio);
+            Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
             newGame.GamePlay();
@@ -241,8 +250,9 @@ namespace BlackJackTests
             Player player1 = new Player();
             Dealer dealer1 = new Dealer();
             MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
-            Game newGame = new Game(player1, dealer1, deck, iio);
+            Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
             newGame.GamePlay();

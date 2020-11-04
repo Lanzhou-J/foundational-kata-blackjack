@@ -6,7 +6,6 @@ namespace BlackJackTests
     public class MockDeck : IDeck
     {
         public List<Card> Cards { get; }
-        public int Sum { get; }
 
         public MockDeck(List<Card>listOfCards)
         {

@@ -5,12 +5,9 @@ namespace BlackJack
 {
     public class Player : Person
     {
-        public bool Hit(Card card)
+        public void Hit(Card card)
         {
             Deck.DrawCard(card);
-            var deckSum = Deck.Sum;
-            Console.WriteLine($"You are currently at {deckSum}");
-            return DetermineBust();
         }
         
         public Player(Deck deck) : base(deck)

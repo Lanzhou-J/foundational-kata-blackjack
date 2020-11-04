@@ -18,16 +18,5 @@ namespace BlackJack
             var cards = new List<Card>();
             Deck = new Deck(cards);
         }
-
-        public bool DetermineBust()
-        {
-            return Deck.Sum > 21;
-        }
-        
-        public bool DetermineBlackjack()
-        {
-            
-            return Deck.Sum == 21;
-        }
     }
 }
