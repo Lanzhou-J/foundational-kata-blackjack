@@ -24,7 +24,7 @@ namespace BlackJackTests
         }
         
         [Fact]
-        public void CheckForWinnerShould_CompareDealerAndPlayerSumAndReturnCorrectString_WhenTied()
+        public void CheckForWinnerShould_CompareDealerAndPlayerSumAndChangeGameStateToTie_WhenTied()
         {
             var newCard = new Card(CardFace.Nine, Suit.Club);
             var newCard2 = new Card(CardFace.Jack, Suit.Club);
@@ -33,11 +33,11 @@ namespace BlackJackTests
             var newCardTwoForListTwo = new Card(CardFace.Jack, Suit.Heart);
             
             var actualResult = CheckForWinnerGetActualResult(newCard, newCard2, newCardForListTwo, newCardTwoForListTwo);
-            Assert.Equal("Player and dealer have tied. Nobody wins.", actualResult);
+            Assert.Equal(GameState.Tie, actualResult);
         }
         
         [Fact]
-        public void CheckForWinner_Should_CompareDealerAndPlayerSumAndReturnCorrectString_WhenDealerHasLargerHand()
+        public void CheckForWinnerShould_ChangeGameStateToDealerWon_WhenDealerHasLargerHand()
         {
             Card newCard = new Card(CardFace.Seven, Suit.Club);
             Card newCard2 = new Card(CardFace.Jack, Suit.Club);
@@ -47,11 +47,11 @@ namespace BlackJackTests
             var actualResult = CheckForWinnerGetActualResult(newCard, newCard2, newCardForListTwo, newCardTwoForListTwo);
 
             
-            Assert.Equal("Dealers hand of cards is larger. Dealer has won!!", actualResult);
+            Assert.Equal(GameState.DealerWon, actualResult);
         }
         
         [Fact]
-        public void CheckForWinner_Should_CompareDealerAndPlayerSumAndReturnCorrectString_WhenPlayerHasLargerHand()
+        public void CheckForWinner_Should_CompareDealerAndPlayerSumAndChangeGameState_WhenPlayerHasLargerHand()
         {
             Card newCard = new Card(CardFace.Ten, Suit.Club);
             Card newCard2 = new Card(CardFace.Jack, Suit.Club);
@@ -61,10 +61,10 @@ namespace BlackJackTests
             var actualResult = CheckForWinnerGetActualResult(newCard, newCard2, newCardForListTwo, newCardTwoForListTwo);
 
 
-            Assert.Equal("Players hand of cards is larger. Player has won!!", actualResult);
+            Assert.Equal(GameState.PlayerWon, actualResult);
         }
 
-        private static string CheckForWinnerGetActualResult(Card newCard, Card newCard2, Card newCardForListTwo, Card newCardTwoForListTwo)
+        private static GameState CheckForWinnerGetActualResult(Card newCard, Card newCard2, Card newCardForListTwo, Card newCardTwoForListTwo)
         {
             var listOfCardsForTest = new List<Card>() {newCard, newCard2};
             var listTwoOfCardsForTest = new List<Card>() {newCardForListTwo, newCardTwoForListTwo};
@@ -76,8 +76,8 @@ namespace BlackJackTests
             var rule = new Rule();
 
             var newGame = new Game(newPlayer, newDealer, newDeck, console, rule);
-            var actualResult = newGame.CheckForWinner();
-            return actualResult;
+            newGame.CheckForWinner();
+            return newGame.GameState;
         }
         
         [Fact]
@@ -258,5 +258,52 @@ namespace BlackJackTests
             newGame.GamePlay();
             Assert.Equal(GameState.DealerWon, newGame.GameState);
         }
+        
+        // To-Do: Test private method through GamePlay -> measure the card number of dealer.
+        // [Fact]
+        //  public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithOneAce()
+        //  {
+        //      var newCard = new Card(CardFace.Ace, Suit.Club);
+        //      var newCard2 = new Card(CardFace.Two, Suit.Club);
+        //      var newCard3 = new Card(CardFace.Three, Suit.Club);
+        //      var newCard4 = new Card(CardFace.Four, Suit.Club); //=>20 or 10? Does Dealer have a choice?
+        //                                                         //Assumption: let dealer have better chance to win
+        //      var newCard5 = new Card(CardFace.Five, Suit.Club);
+        //      var newCard6 = new Card(CardFace.Two, Suit.Heart);
+        //      var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
+        //      var newDealer1 = new Dealer();
+        //      newDealer1.Play(listOfCardsForTest);
+        //      Assert.Equal(4, newDealer1.Deck.Cards.Count);
+        //  }
+        //  
+        //  [Fact]
+        //  public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithNoAces()
+        //  {
+        //      var newCard = new Card(CardFace.Two, Suit.Club);
+        //      var newCard2 = new Card(CardFace.Six, Suit.Club);
+        //      var newCard3 = new Card(CardFace.Three, Suit.Club);
+        //      var newCard4 = new Card(CardFace.Five, Suit.Club); 
+        //      var newCard5 = new Card(CardFace.Five, Suit.Club);
+        //      var newCard6 = new Card(CardFace.Two, Suit.Heart);
+        //      var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
+        //      var newDealer1 = new Dealer();
+        //      newDealer1.Play(listOfCardsForTest);
+        //      Assert.Equal(5, newDealer1.Deck.Cards.Count);
+        //  }
+        //  
+        //  [Fact]
+        //  public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithThreeAces()
+        //  {
+        //      var newCard = new Card(CardFace.Ace, Suit.Club);
+        //      var newCard2 = new Card(CardFace.Ace, Suit.Spade);
+        //      var newCard3 = new Card(CardFace.Three, Suit.Club);
+        //      var newCard4 = new Card(CardFace.Ace, Suit.Heart); 
+        //      var newCard5 = new Card(CardFace.Five, Suit.Club);
+        //      var newCard6 = new Card(CardFace.Two, Suit.Heart);
+        //      var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
+        //      var newDealer1 = new Dealer();
+        //      newDealer1.Play(listOfCardsForTest);
+        //      Assert.Equal(5, newDealer1.Deck.Cards.Count);
+        //  }
     }
 }

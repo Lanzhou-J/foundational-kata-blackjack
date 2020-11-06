@@ -7,10 +7,10 @@
             var newPlayer = new Player();
             var newDealer = new Dealer();
             var newDeck = new Deck();
-            var console = new ConsoleInputOutput();
+            var consoleInputOutput = new ConsoleInputOutput();
             var rule = new Rule();
-            
-            var newGame = new Game(newPlayer, newDealer, newDeck, console, rule);
+            consoleInputOutput.Clear();
+            var newGame = new Game(newPlayer, newDealer, newDeck, consoleInputOutput, rule);
             newGame.Start();
             newGame.GamePlay();
         }

@@ -11,7 +11,7 @@ namespace BlackJack
             ShuffledDeck = shuffledDeck;
             _iio = iio;
             GameState = gameState;
-            Rule = new Rule();
+            Rule = rule;
         }
 
         private Player Player { get; }
@@ -32,7 +32,7 @@ namespace BlackJack
 
         private void OutputPlayersFirst2CardsAndSum()
         {
-            _iio.Output("Your first two cards are: ");
+            _iio.Output(Messages.FirstCardsMessage);
             OutputPlayersDeck();
             OutputPlayersSum();
         }
@@ -44,7 +44,7 @@ namespace BlackJack
 
         private void OutputPlayersDeck()
         {
-            _iio.Output(Player.Deck);
+            _iio.Output(Player.Deck); 
         }
 
         private void DealerTake2CardsFromShuffledDeck()
@@ -72,40 +72,45 @@ namespace BlackJack
         public void GamePlay()
         {
             PlayerTakeTurnsToPlay();
+            if (GameState != GameState.Continue) return;
+            DealerTakeTurnsToPlay();
+            CheckForWinner();
+            OutputWinner();
+        }
 
-            if (GameState == GameState.Continue)
+        private void DealerTakeTurnsToPlay()
+        {
+            _iio.Output(Messages.DealersTurnMessage);
+            OutputDealersFirst2CardsAndSum();
+            
+            var dealerDeckSum = CalculateDealerDeckSum();
+            while (dealerDeckSum < 17)
             {
-                _iio.Output("Dealers turn to play...\n");
-                OutputDealersFirst2CardsAndSum();
+                _iio.Output(Messages.DealerDrawNewCard);
+                var newCard = ShuffledDeck.PopCard();
+                Dealer.Deck.DrawCard(newCard);
 
-                int index = 0;
-                var dealerDeckSum = CalculateDealerDeckSum();
-                while (dealerDeckSum < 17)
+                dealerDeckSum = CalculateDealerDeckSum();
+                OutputDealersDeckAndSum(dealerDeckSum);
+
+                if (Rule.DetermineBust(Dealer.Deck))
                 {
-                    _iio.Output("Dealer draws a new card: ");
-                    Dealer.Deck.DrawCard(ShuffledDeck.Cards[index]);
-                    index++;
-                    
-                    dealerDeckSum = CalculateDealerDeckSum();
-                    _iio.Output($"Dealer is currently at {dealerDeckSum}");
-                    _iio.Output("with a hand of: ");
-                    OutputDealersDeck();
-                    
-                    if (Rule.DetermineBust(Dealer.Deck))
-                    {
-                        _iio.Output("The dealer has busted. Player is the winner!!");
-                        GameState = GameState.PlayerWon;
-                    }
+                    _iio.Output(Messages.DealerBustMessage);
+                    GameState = GameState.PlayerWon;
                 }
-                
-                _iio.Output(CheckForWinner());
-                
             }
+        }
+
+        private void OutputDealersDeckAndSum(int dealerDeckSum)
+        {
+            _iio.Output($"Dealer is currently at {dealerDeckSum}");
+            _iio.Output("with a hand of: ");
+            OutputDealersDeck();
         }
 
         private void OutputDealersFirst2CardsAndSum()
         {
-            _iio.Output("The dealers first two cards are: \n");
+            _iio.Output(Messages.DealerFirstCardsMessage);
             OutputDealersDeck();
             OutputDealersSum();
         }
@@ -130,27 +135,26 @@ namespace BlackJack
             OutputPlayersFirst2CardsAndSum();
             if (Rule.DetermineBlackjack(Player.Deck))
             {
-                _iio.Output("Player has got Blackjack!!! Yay!");
+                _iio.Output(Messages.PlayerGotBlackJack);
             }
+            
+            
             var choice = AskPlayersChoice();
             while (PlayerChooseHitAndGameContinues(choice))
             {
                 var newHitCard = ShuffledDeck.PopCard();
                 Player.Hit(newHitCard);
                 var deckSum = CalculatePlayerDeckSum();
-                _iio.Output($"You are currently at {deckSum}");
-                _iio.Output("with a hand of: ");
-                OutputPlayersDeck();
+                OutputPlayersDeckAndSum(deckSum);
 
                 if (Rule.DetermineBlackjack(Player.Deck))
                 {
-                    _iio.Output("Player has got Blackjack!!! Yay!");
-                    // GameState = GameState.Continue;
+                    _iio.Output(Messages.PlayerGotBlackJack);
                 }
 
                 if (Rule.DetermineBust(Player.Deck))
                 {
-                    _iio.Output("Player is busted. Dealer wins!!");
+                    _iio.Output(Messages.PlayerBustMessage);
                     GameState = GameState.DealerWon;
                 }
                 else
@@ -158,6 +162,13 @@ namespace BlackJack
                     choice = AskPlayersChoice();
                 }
             }
+        }
+
+        private void OutputPlayersDeckAndSum(int deckSum)
+        {
+            _iio.Output($"You are currently at {deckSum}");
+            _iio.Output("with a hand of: ");
+            OutputPlayersDeck();
         }
 
         private int CalculatePlayerDeckSum()
@@ -176,29 +187,44 @@ namespace BlackJack
             return choice;
         }
 
-        public string CheckForWinner()
+        public void CheckForWinner()
         {
-            var outcome = "";
+            
             if (Rule.CalculateSum(Dealer.Deck) == Rule.CalculateSum(Player.Deck))
             {
-                outcome = ("Player and dealer have tied. Nobody wins.");
                 GameState = GameState.Tie;
-                return outcome;
+                
             } 
             if(Rule.CalculateSum(Dealer.Deck) > Rule.CalculateSum(Player.Deck))
             {
-                outcome = ("Dealers hand of cards is larger. Dealer has won!!");
                 GameState = GameState.DealerWon;
-                return outcome;
+                
             }
 
             if(Rule.CalculateSum(Dealer.Deck) < Rule.CalculateSum(Player.Deck))
             {
-                outcome = ("Players hand of cards is larger. Player has won!!");
                 GameState = GameState.PlayerWon;
-                return outcome;
             }
-            return outcome;
+        }
+
+        private void OutputWinner()
+        {
+            switch (GameState)
+            {
+                case GameState.Tie:
+                    _iio.Output("Player and dealer have tied. Nobody wins.");
+                    break;
+                case GameState.PlayerWon:
+                    _iio.Output("Players hand of cards is larger. Player has won!!");
+                    break;
+                case GameState.DealerWon:
+                    _iio.Output("Dealers hand of cards is larger. Dealer has won!!");
+                    break;
+                case GameState.Continue:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }
