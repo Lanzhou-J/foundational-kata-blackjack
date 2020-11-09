@@ -41,7 +41,7 @@ namespace BlackJack
             var deckString = "";
             foreach (var cardString in Cards.Select(card => card.ToString()))
             {
-                deckString += $"{cardString}/n";
+                deckString += $"{cardString}\n";
             }
 
             return deckString;
