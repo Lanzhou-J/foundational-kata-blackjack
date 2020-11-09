@@ -5,6 +5,7 @@ namespace BlackJack
 {
     public class ConsoleInputOutput: IInputOutput
     {
+        
         public string Ask(string question)
         {
             Console.WriteLine(question);
@@ -15,7 +16,7 @@ namespace BlackJack
         {
             Console.WriteLine(message);
         }
-
+        
         public void Output(Deck deck)
         {
             foreach (var cardString in deck.Cards.Select(card => card.ToString()))
@@ -23,7 +24,7 @@ namespace BlackJack
                 Console.WriteLine(cardString);
             }
         }
-
+        
         public void Clear()
         {
             Console.Clear();

@@ -30,21 +30,11 @@ namespace BlackJack
             DealerTake2CardsFromShuffledDeck();
         }
 
-        private void OutputPlayersFirst2CardsAndSum()
+        private void OutputPlayersCardsAndSum()
         {
-            _iio.Output(Messages.FirstCardsMessage);
-            OutputPlayersDeck();
-            OutputPlayersSum();
-        }
-
-        private void OutputPlayersSum()
-        {
-            _iio.Output($"You are currently at {CalculatePlayerDeckSum()}");
-        }
-
-        private void OutputPlayersDeck()
-        {
-            _iio.Output(Player.Deck); 
+            var sum = CalculatePlayerDeckSum();
+            var deckString = Player.Deck.ToString();
+            _iio.Output(GameInstructions.PlayerCardsAndSum(sum, deckString));
         }
 
         private void DealerTake2CardsFromShuffledDeck()
@@ -80,13 +70,13 @@ namespace BlackJack
 
         private void DealerTakeTurnsToPlay()
         {
-            _iio.Output(Messages.DealersTurnMessage);
+            _iio.Output(GameInstructions.DealersTurnMessage());
             OutputDealersFirst2CardsAndSum();
             
             var dealerDeckSum = CalculateDealerDeckSum();
             while (dealerDeckSum < 17)
             {
-                _iio.Output(Messages.DealerDrawNewCard);
+                _iio.Output(GameInstructions.DealerDrawNewCard());
                 var newCard = ShuffledDeck.PopCard();
                 Dealer.Deck.DrawCard(newCard);
 
@@ -95,7 +85,7 @@ namespace BlackJack
 
                 if (Rule.DetermineBust(Dealer.Deck))
                 {
-                    _iio.Output(Messages.DealerBustMessage);
+                    _iio.Output(GameInstructions.DealerBustMessage());
                     GameState = GameState.PlayerWon;
                 }
             }
@@ -132,7 +122,7 @@ namespace BlackJack
 
         private void PlayerTakeTurnsToPlay()
         {
-            OutputPlayersFirst2CardsAndSum();
+            OutputPlayersCardsAndSum();
             if (Rule.DetermineBlackjack(Player.Deck))
             {
                 _iio.Output(Messages.PlayerGotBlackJack);
@@ -144,8 +134,7 @@ namespace BlackJack
             {
                 var newHitCard = ShuffledDeck.PopCard();
                 Player.Hit(newHitCard);
-                var deckSum = CalculatePlayerDeckSum();
-                OutputPlayersDeckAndSum(deckSum);
+                OutputPlayersCardsAndSum();
 
                 if (Rule.DetermineBlackjack(Player.Deck))
                 {
@@ -162,13 +151,6 @@ namespace BlackJack
                     choice = AskPlayersChoice();
                 }
             }
-        }
-
-        private void OutputPlayersDeckAndSum(int deckSum)
-        {
-            _iio.Output($"You are currently at {deckSum}");
-            _iio.Output("with a hand of: ");
-            OutputPlayersDeck();
         }
 
         private int CalculatePlayerDeckSum()

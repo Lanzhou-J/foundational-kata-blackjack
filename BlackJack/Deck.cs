@@ -35,5 +35,16 @@ namespace BlackJack
         {
             Cards.Add(card);
         }
+
+        public override string ToString()
+        {
+            var deckString = "";
+            foreach (var cardString in Cards.Select(card => card.ToString()))
+            {
+                deckString += $"{cardString}/n";
+            }
+
+            return deckString;
+        }
     }
 }
