@@ -19,6 +19,9 @@ namespace BlackJack
 
         private Rule Rule { get; }
 
+        private int _playerDeckSum = 0;
+        private int _dealerDeckSum = 0;
+
         private IDeck ShuffledDeck { get; }
         private readonly IInputOutput _iio;
         public GameState GameState { get; private set; }
@@ -27,7 +30,9 @@ namespace BlackJack
         {
             ClearOutputPlatform();
             PlayerTake2CardsFromShuffledDeck();
+            _playerDeckSum = CalculatePlayerDeckSum();
             DealerTake2CardsFromShuffledDeck();
+            _dealerDeckSum = CalculateDealerDeckSum();
         }
         
         private void DealerTake2CardsFromShuffledDeck()
@@ -42,9 +47,9 @@ namespace BlackJack
         private void PlayerTake2CardsFromShuffledDeck()
         {
             var newCard = ShuffledDeck.PopCard();
-            Player.Deck.DrawCard(newCard);
+            Player.Hit(newCard);
             var newCardTwo = ShuffledDeck.PopCard();
-            Player.Deck.DrawCard(newCardTwo);
+            Player.Hit(newCardTwo);
         }
         
         private void ClearOutputPlatform()
@@ -74,6 +79,7 @@ namespace BlackJack
             {
                 var newHitCard = ShuffledDeck.PopCard();
                 Player.Hit(newHitCard);
+                _playerDeckSum = CalculatePlayerDeckSum();
                 OutputPlayersCardsAndSum();
 
                 if (Rule.DetermineBlackjack(Player.Deck))
@@ -96,16 +102,15 @@ namespace BlackJack
         private void DealerTakeTurnsToPlay()
         {
             _iio.Output(GameInstructions.DealersTurnMessage());
+            _dealerDeckSum = CalculateDealerDeckSum();
             OutputDealersCardsAndSum();
-            
-            var dealerDeckSum = CalculateDealerDeckSum();
-            while (dealerDeckSum < 17)
+            while (_dealerDeckSum < 17)
             {
                 _iio.Output(GameInstructions.DealerDrawNewCard());
                 var newCard = ShuffledDeck.PopCard();
                 Dealer.Hit(newCard);
 
-                dealerDeckSum = CalculateDealerDeckSum();
+                _dealerDeckSum = CalculateDealerDeckSum();
                 OutputDealersCardsAndSum();
 
                 if (Rule.DetermineBust(Dealer.Deck))
@@ -118,9 +123,8 @@ namespace BlackJack
         
         private void OutputDealersCardsAndSum()
         {
-            var sum = CalculatePlayerDeckSum();
             var deckString = Player.Deck.ToString();
-            _iio.Output(GameInstructions.DealerCardsAndSum(sum, deckString));
+            _iio.Output(GameInstructions.DealerCardsAndSum(_dealerDeckSum, deckString));
         }
 
         private int CalculateDealerDeckSum()
@@ -130,9 +134,8 @@ namespace BlackJack
 
         private void OutputPlayersCardsAndSum()
         {
-            var sum = CalculatePlayerDeckSum();
             var deckString = Player.Deck.ToString();
-            _iio.Output(GameInstructions.PlayerCardsAndSum(sum, deckString));
+            _iio.Output(GameInstructions.PlayerCardsAndSum(_playerDeckSum, deckString));
         }
 
         private int CalculatePlayerDeckSum()
@@ -153,17 +156,19 @@ namespace BlackJack
 
         public void CheckForWinner()
         {
+            _dealerDeckSum = CalculateDealerDeckSum();
+            _playerDeckSum = CalculatePlayerDeckSum();
             
-            if (Rule.CalculateSum(Dealer.Deck) == Rule.CalculateSum(Player.Deck))
+            if (_dealerDeckSum == _playerDeckSum)
             {
                 GameState = GameState.Tie;
             } 
-            if(Rule.CalculateSum(Dealer.Deck) > Rule.CalculateSum(Player.Deck))
+            if(_dealerDeckSum > _playerDeckSum)
             {
                 GameState = GameState.DealerWon;
             }
 
-            if(Rule.CalculateSum(Dealer.Deck) < Rule.CalculateSum(Player.Deck))
+            if(_dealerDeckSum < _playerDeckSum)
             {
                 GameState = GameState.PlayerWon;
             }
