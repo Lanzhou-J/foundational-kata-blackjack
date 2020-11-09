@@ -260,50 +260,65 @@ namespace BlackJackTests
         }
         
         // To-Do: Test private method through GamePlay -> measure the card number of dealer.
-        // [Fact]
-        //  public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithOneAce()
-        //  {
-        //      var newCard = new Card(CardFace.Ace, Suit.Club);
-        //      var newCard2 = new Card(CardFace.Two, Suit.Club);
-        //      var newCard3 = new Card(CardFace.Three, Suit.Club);
-        //      var newCard4 = new Card(CardFace.Four, Suit.Club); //=>20 or 10? Does Dealer have a choice?
-        //                                                         //Assumption: let dealer have better chance to win
-        //      var newCard5 = new Card(CardFace.Five, Suit.Club);
-        //      var newCard6 = new Card(CardFace.Two, Suit.Heart);
-        //      var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
-        //      var newDealer1 = new Dealer();
-        //      newDealer1.Play(listOfCardsForTest);
-        //      Assert.Equal(4, newDealer1.Deck.Cards.Count);
-        //  }
-        //  
-        //  [Fact]
-        //  public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithNoAces()
-        //  {
-        //      var newCard = new Card(CardFace.Two, Suit.Club);
-        //      var newCard2 = new Card(CardFace.Six, Suit.Club);
-        //      var newCard3 = new Card(CardFace.Three, Suit.Club);
-        //      var newCard4 = new Card(CardFace.Five, Suit.Club); 
-        //      var newCard5 = new Card(CardFace.Five, Suit.Club);
-        //      var newCard6 = new Card(CardFace.Two, Suit.Heart);
-        //      var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
-        //      var newDealer1 = new Dealer();
-        //      newDealer1.Play(listOfCardsForTest);
-        //      Assert.Equal(5, newDealer1.Deck.Cards.Count);
-        //  }
-        //  
-        //  [Fact]
-        //  public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithThreeAces()
-        //  {
-        //      var newCard = new Card(CardFace.Ace, Suit.Club);
-        //      var newCard2 = new Card(CardFace.Ace, Suit.Spade);
-        //      var newCard3 = new Card(CardFace.Three, Suit.Club);
-        //      var newCard4 = new Card(CardFace.Ace, Suit.Heart); 
-        //      var newCard5 = new Card(CardFace.Five, Suit.Club);
-        //      var newCard6 = new Card(CardFace.Two, Suit.Heart);
-        //      var listOfCardsForTest = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
-        //      var newDealer1 = new Dealer();
-        //      newDealer1.Play(listOfCardsForTest);
-        //      Assert.Equal(5, newDealer1.Deck.Cards.Count);
-        //  }
+        [Fact]
+         public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithOneAce()
+         {
+             var newCard = new Card(CardFace.Ace, Suit.Club);
+             var newCard2 = new Card(CardFace.Two, Suit.Club);
+             var newCard3 = new Card(CardFace.Three, Suit.Club);
+             var newCard4 = new Card(CardFace.Four, Suit.Club);
+             var newCard5 = new Card(CardFace.Five, Suit.Club);
+             var newCard6 = new Card(CardFace.Two, Suit.Heart);
+             var listOfMockCards = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
+             MockDeck deck = new MockDeck(listOfMockCards);
+             var rule = new Rule();
+             var newDealer = new Dealer();
+             var newPlayer = new Player();
+             IInputOutput iio = new TestResponder(new[]{StayResponse});
+             Game newGame = new Game(newPlayer, newDealer, deck, iio, rule);
+             newGame.Play();
+             Assert.Equal(4, newDealer.Deck.Cards.Count);
+         }
+         
+        
+        [Fact]
+        public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithNoAces()
+        {
+            var newCard = new Card(CardFace.Two, Suit.Club);
+            var newCard2 = new Card(CardFace.Six, Suit.Club);
+            var newCard3 = new Card(CardFace.Three, Suit.Club);
+            var newCard4 = new Card(CardFace.Five, Suit.Club); 
+            var newCard5 = new Card(CardFace.Five, Suit.Club);
+            var newCard6 = new Card(CardFace.Two, Suit.Heart);
+            var listOfMockCards= new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
+            MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
+            var newDealer = new Dealer();
+            var newPlayer = new Player();
+            IInputOutput iio = new TestResponder(new[]{StayResponse});
+            Game newGame = new Game(newPlayer, newDealer, deck, iio, rule);
+            newGame.Play();
+            Assert.Equal(5, newDealer.Deck.Cards.Count);
+        }
+        
+        [Fact]
+        public void GamePlayShould_LetDealerContinueToDrawCard_WhenTheSumBelow17WithThreeAces()
+        {
+            var newCard = new Card(CardFace.Ace, Suit.Club);
+            var newCard2 = new Card(CardFace.Ace, Suit.Spade);
+            var newCard3 = new Card(CardFace.Three, Suit.Club);
+            var newCard4 = new Card(CardFace.Ace, Suit.Heart); 
+            var newCard5 = new Card(CardFace.Five, Suit.Club);
+            var newCard6 = new Card(CardFace.Two, Suit.Heart);
+            var listOfMockCards = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
+            MockDeck deck = new MockDeck(listOfMockCards);
+            var rule = new Rule();
+            var newDealer = new Dealer();
+            var newPlayer = new Player();
+            IInputOutput iio = new TestResponder(new[]{StayResponse});
+            Game newGame = new Game(newPlayer, newDealer, deck, iio, rule);
+            newGame.Play();
+            Assert.Equal(5, newDealer.Deck.Cards.Count);
+        }
     }
 }

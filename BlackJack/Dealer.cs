@@ -10,6 +10,10 @@ namespace BlackJack
         {
         }
         
+        public void Hit(Card card)
+        {
+            Deck.DrawCard(card);
+        }
         public Dealer()
         {
         }

@@ -103,7 +103,7 @@ namespace BlackJack
             {
                 _iio.Output(GameInstructions.DealerDrawNewCard());
                 var newCard = ShuffledDeck.PopCard();
-                Dealer.Deck.DrawCard(newCard);
+                Dealer.Hit(newCard);
 
                 dealerDeckSum = CalculateDealerDeckSum();
                 OutputDealersCardsAndSum();
@@ -157,12 +157,10 @@ namespace BlackJack
             if (Rule.CalculateSum(Dealer.Deck) == Rule.CalculateSum(Player.Deck))
             {
                 GameState = GameState.Tie;
-                
             } 
             if(Rule.CalculateSum(Dealer.Deck) > Rule.CalculateSum(Player.Deck))
             {
                 GameState = GameState.DealerWon;
-                
             }
 
             if(Rule.CalculateSum(Dealer.Deck) < Rule.CalculateSum(Player.Deck))
