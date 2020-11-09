@@ -12,7 +12,7 @@
             consoleInputOutput.Clear();
             var newGame = new Game(newPlayer, newDealer, newDeck, consoleInputOutput, rule);
             newGame.Start();
-            newGame.GamePlay();
+            newGame.Play();
         }
     }
 }

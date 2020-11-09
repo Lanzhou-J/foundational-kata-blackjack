@@ -92,7 +92,7 @@ namespace BlackJackTests
             Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse, rule);
             newGame.Start();
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
         }
         
@@ -107,7 +107,7 @@ namespace BlackJackTests
             Game newGame = new Game(newPlayer, newDealer, newDeck, playerResponse,rule);
             newGame.Start();
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(3, newPlayer.Deck.Cards.Count);
         }
         
@@ -129,7 +129,7 @@ namespace BlackJackTests
             Game newGame = new Game(newPlayer, newDealer, deck, playerResponse, rule);
             newGame.Start();
             Assert.Equal(2, newPlayer.Deck.Cards.Count);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(4, newPlayer.Deck.Cards.Count);
         }
         
@@ -150,7 +150,7 @@ namespace BlackJackTests
             Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(GameState.PlayerWon, newGame.GameState);
         }
         
@@ -171,7 +171,7 @@ namespace BlackJackTests
             Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(GameState.DealerWon, newGame.GameState);
         }
         
@@ -192,7 +192,7 @@ namespace BlackJackTests
             Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(GameState.Tie, newGame.GameState);
         }
         
@@ -213,7 +213,7 @@ namespace BlackJackTests
             Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(GameState.Tie, newGame.GameState);
         }
         
@@ -234,7 +234,7 @@ namespace BlackJackTests
             Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(GameState.DealerWon, newGame.GameState);
         }
         
@@ -255,7 +255,7 @@ namespace BlackJackTests
             Game newGame = new Game(player1, dealer1, deck, iio, rule);
             newGame.Start();
             Assert.Equal(GameState.Continue, newGame.GameState);
-            newGame.GamePlay();
+            newGame.Play();
             Assert.Equal(GameState.DealerWon, newGame.GameState);
         }
         
