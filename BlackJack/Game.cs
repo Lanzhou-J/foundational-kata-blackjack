@@ -4,7 +4,7 @@ namespace BlackJack
 {
     public class Game
     {
-        public Game(Player player, Dealer dealer, IDeck shuffledDeck, IInputOutput iio, Rule rule, GameState gameState = GameState.Continue)
+        public Game(Player player, Player dealer, IDeck shuffledDeck, IInputOutput iio, Rule rule, GameState gameState = GameState.Continue)
         {
             Player = player;
             Dealer = dealer;
@@ -15,7 +15,7 @@ namespace BlackJack
         }
 
         private Player Player { get; }
-        private Dealer Dealer { get; }
+        private Player Dealer { get; }
 
         private Rule Rule { get; }
 

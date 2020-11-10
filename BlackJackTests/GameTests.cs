@@ -12,7 +12,7 @@ namespace BlackJackTests
         public void Start_Should_InitializeTwoCardsInHandForPlayerAndDealer()
         {
             Player newPlayer = new Player();
-            Dealer newDealer = new Dealer();
+            Player newDealer = new Player();
             Deck newDeck = new Deck();
             var console = new ConsoleInputOutput();
             var rule = new Rule();
@@ -70,7 +70,7 @@ namespace BlackJackTests
             var listTwoOfCardsForTest = new List<Card>() {newCardForListTwo, newCardTwoForListTwo};
 
             var newPlayer = new Player(new Deck(listOfCardsForTest));
-            var newDealer = new Dealer(new Deck(listTwoOfCardsForTest));
+            var newDealer = new Player(new Deck(listTwoOfCardsForTest));
             var console = new ConsoleInputOutput();
             var newDeck = new Deck();
             var rule = new Rule();
@@ -85,7 +85,7 @@ namespace BlackJackTests
         {
             
             Player newPlayer = new Player();
-            Dealer newDealer = new Dealer();
+            Player newDealer = new Player();
             Deck newDeck = new Deck();
             var playerResponse = new TestResponder(new[]{StayResponse});
             var rule = new Rule();
@@ -100,7 +100,7 @@ namespace BlackJackTests
         public void GamePlayShould_EnablePlayerDrawCard_WhenPlayerInputHitStayResponse()
         {
             Player newPlayer = new Player();
-            Dealer newDealer = new Dealer();
+            Player newDealer = new Player();
             Deck newDeck = new Deck();
             Rule rule = new Rule();
             var playerResponse = new TestResponder(new[]{HitResponse,StayResponse});
@@ -122,7 +122,7 @@ namespace BlackJackTests
             Card playerCard4 = new Card(CardFace.Eight, Suit.Spade);
             List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard1, dealerCard2, playerCard3, playerCard4};
             Player newPlayer = new Player();
-            Dealer newDealer = new Dealer();
+            Player newDealer = new Player();
             MockDeck deck = new MockDeck(listOfMockCards);
             Rule rule = new Rule();
             var playerResponse = new TestResponder(new[]{HitResponse, HitResponse, StayResponse});
@@ -143,7 +143,7 @@ namespace BlackJackTests
             Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
             List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
             Player player1 = new Player();
-            Dealer dealer1 = new Dealer();
+            Player dealer1 = new Player();
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
@@ -164,7 +164,7 @@ namespace BlackJackTests
             Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
             List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
             Player player1 = new Player();
-            Dealer dealer1 = new Dealer();
+            Player dealer1 = new Player();
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
@@ -185,7 +185,7 @@ namespace BlackJackTests
             Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
             List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
             Player player1 = new Player();
-            Dealer dealer1 = new Dealer();
+            Player dealer1 = new Player();
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
@@ -206,7 +206,7 @@ namespace BlackJackTests
             Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
             List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
             Player player1 = new Player();
-            Dealer dealer1 = new Dealer();
+            Player dealer1 = new Player();
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{StayResponse});
@@ -227,7 +227,7 @@ namespace BlackJackTests
             Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
             List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
             Player player1 = new Player();
-            Dealer dealer1 = new Dealer();
+            Player dealer1 = new Player();
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
@@ -248,7 +248,7 @@ namespace BlackJackTests
             Card playerCard5 = new Card(CardFace.Eight, Suit.Spade);
             List<Card> listOfMockCards = new List<Card>(){playerCard1, playerCard2, dealerCard3, dealerCard4, playerCard5};
             Player player1 = new Player();
-            Dealer dealer1 = new Dealer();
+            Player dealer1 = new Player();
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
             IInputOutput iio = new TestResponder(new[]{HitResponse, StayResponse});
@@ -272,7 +272,7 @@ namespace BlackJackTests
              var listOfMockCards = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
              MockDeck deck = new MockDeck(listOfMockCards);
              var rule = new Rule();
-             var newDealer = new Dealer();
+             var newDealer = new Player();
              var newPlayer = new Player();
              IInputOutput iio = new TestResponder(new[]{StayResponse});
              Game newGame = new Game(newPlayer, newDealer, deck, iio, rule);
@@ -293,7 +293,7 @@ namespace BlackJackTests
             var listOfMockCards= new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
-            var newDealer = new Dealer();
+            var newDealer = new Player();
             var newPlayer = new Player();
             IInputOutput iio = new TestResponder(new[]{StayResponse});
             Game newGame = new Game(newPlayer, newDealer, deck, iio, rule);
@@ -313,7 +313,7 @@ namespace BlackJackTests
             var listOfMockCards = new List<Card>() {newCard, newCard2, newCard3, newCard4, newCard5, newCard6};
             MockDeck deck = new MockDeck(listOfMockCards);
             var rule = new Rule();
-            var newDealer = new Dealer();
+            var newDealer = new Player();
             var newPlayer = new Player();
             IInputOutput iio = new TestResponder(new[]{StayResponse});
             Game newGame = new Game(newPlayer, newDealer, deck, iio, rule);

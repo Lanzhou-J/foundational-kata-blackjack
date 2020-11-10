@@ -5,7 +5,7 @@
         static void Main()
         {
             var newPlayer = new Player();
-            var newDealer = new Dealer();
+            var newDealer = new Player();
             var newDeck = new Deck();
             var consoleInputOutput = new ConsoleInputOutput();
             var rule = new Rule();
