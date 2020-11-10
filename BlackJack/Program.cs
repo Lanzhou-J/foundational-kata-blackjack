@@ -5,16 +5,14 @@
         static void Main()
         {
             var newPlayer = new Player();
-
-            var newDealer = new Dealer();
-
+            var newDealer = new Player();
             var newDeck = new Deck();
-            
-            var console = new ConsoleInputOutput();
-            
-            var newGame = new Game(newPlayer, newDealer, newDeck, console);
+            var consoleInputOutput = new ConsoleInputOutput();
+            var rule = new Rule();
+            consoleInputOutput.Clear();
+            var newGame = new Game(newPlayer, newDealer, newDeck, consoleInputOutput, rule);
             newGame.Start();
-            newGame.GamePlay();
+            newGame.Play();
         }
     }
 }

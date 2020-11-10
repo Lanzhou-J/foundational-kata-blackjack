@@ -1,24 +1,27 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlackJack
 {
-    public class Player : Person
+    public class Player
     {
-        public bool Hit(Card newCard)
+        public Deck Deck { get; }
+
+        public Player(Deck deck)
         {
-            DrawCard(newCard);
-            Sum();
-            Console.WriteLine($"You are currently at {Sum()}");
-            return DetermineBust();
+            Deck = deck;
         }
         
-        public Player(List<Card> cardsInHand) : base(cardsInHand)
+        public void Hit(Card card)
         {
+            Deck.DrawCard(card);
         }
-        
+
         public Player()
         {
+            var cards = new List<Card>();
+            Deck = new Deck(cards);
         }
     }
 }

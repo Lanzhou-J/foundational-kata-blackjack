@@ -7,5 +7,6 @@ namespace BlackJack
         public List<Card> CreateADeck();
         public List<Card> Cards { get; }
         public Card PopCard();
+        public void DrawCard(Card card);
     }
 }

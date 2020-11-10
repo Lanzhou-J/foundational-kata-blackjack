@@ -23,5 +23,10 @@ namespace BlackJackTests
             Cards.Remove(firstCard);
             return firstCard;
         }
+
+        public void DrawCard(Card card)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
